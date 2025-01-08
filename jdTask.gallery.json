@@ -1,6 +1,6 @@
 {
     "name": "qx JD_Task",
-    "description": "https://raw.githubusercontent.com/yyn618/QuantumultX-Script/main/JD_Task.json",
+    "description": "纯收集不负责维护，版权归原作者所有，如有侵权请联系删除。",
     "task": [
         {
             "config":"0 9 * * * https://raw.githubusercontent.com/yyn618/QuantumultX-Script/main/Task/JD New/JD_DailyBonus.js, tag=京东, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png , enabled=true"
