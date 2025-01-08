@@ -834,67 +834,30 @@
             "script": "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js"
         },
         {
-            "id": "zZ.Haidilao",
-            "name": "海底捞",
+            "id": "hdl",
+            "name": "海底捞签到",
             "descs_html": [
-                "请先按<a href=\"https://raw.githubusercontent.com/zZPiglet/Task/master/Haidilao/Haidilao.js\">脚本注释</a>进行配置，然后进入\"海底捞\"app，手动签到一次或点击\"签到\"，若弹出\"首次写入海底捞等级 Token 成功\"及\"首次写入海底捞签到 Cookie 成功\"即可正常食用。",
-                "需要注意的是，有两条重写，一条为获取用户基本信息的，一条为签到的。两者独立互不影响，故即使没有获取到基础信息的，依旧可以签到，只是会有部分错误及 undefined。两次通知应该分别在进入\"我的\"及\"签到\"处通知。"
+                "登录后抓包 superapp-public.kiwa-tech.com域名下的_haidilao_app_token，填写到hdl_data,多账号用 @ 分割"
+            ],
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Hdl.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Hdl.png"
             ],
             "keys": [
-                "hilh",
-                "hilb",
-                "hich"
+                "hdl_data"
             ],
             "settings": [
                 {
-                    "id": "hilh",
-                    "name": "Token",
+                    "id": "hdl_data",
+                    "name": "hdl_data",
                     "val": "",
                     "type": "textarea",
-                    "autoGrow": true,
-                    "rows": 3,
-                    "desc": "用户等级接口登陆验证信息 _HAIDILAO_APP_TOKEN。"
-                },
-                {
-                    "id": "@hilb._HAIDILAO_APP_TOKEN",
-                    "name": "Body._HAIDILAO_APP_TOKEN",
-                    "val": "",
-                    "type": "textarea",
-                    "autoGrow": true,
-                    "rows": 2,
-                    "desc": "用户等级接口请求消息体，登陆验证信息，此部分应与 Token 中 _HAIDILAO_APP_TOKEN= 之后值一致。"
-                },
-                {
-                    "id": "@hilb.customerId",
-                    "name": "Body.customerId",
-                    "val": "",
-                    "type": "text",
-                    "desc": "用户等级接口请求消息体，用户编号。"
-                },
-                {
-                    "id": "@hilb.country",
-                    "name": "Body.country",
-                    "val": "",
-                    "type": "text",
-                    "desc": "用户等级接口请求消息体，国家。"
-                },
-                {
-                    "id": "hich",
-                    "name": "Cookie",
-                    "val": "",
-                    "type": "textarea",
-                    "autoGrow": true,
-                    "rows": 7,
-                    "desc": "签到接口登陆验证信息，包含更多信息，可自行修改调试。"
+                    "desc": "登录后抓包 superapp-public.kiwa-tech.com域名下的_haidilao_app_token，填写到hdl_data,多账号用 @ 分割"
                 }
             ],
-            "author": "@zZPiglet",
-            "repo": "https://github.com/zZPiglet/Task/blob/master/Haidilao/Haidilao.js",
-            "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Haidilao/Haidilao.js",
-            "icons": [
-                "https://raw.githubusercontent.com/Orz-3/mini/master/haidilao.png",
-                "https://raw.githubusercontent.com/Orz-3/task/master/haidilao.png"
-            ]
+            "author": "@Sliverkiss",
+            "repo": "",
+            "script": ""
         },
         {
             "id": "Leiyiyan_Aliyun_Web",
