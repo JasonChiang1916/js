@@ -1,6 +1,15 @@
+<h1>1916 Scripts</h1>
+<h3>Collection of Scripts written for QuantumultX iOS App </h4>
+<a href="https://github.com/JasonChiang1916/js/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/JasonChiang1916/js?color=yellow&logo=riseup&logoColor=yellow&style=flat-square"></a>
+<a href="https://github.com/JasonChiang1916/js/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/JasonChiang1916/js?color=orange&style=flat-square"></a>
+<a href="https://github.com/JasonChiang1916/JasonChiang1916/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/JasonChiang1916/js?color=red&style=flat-square"></a>
+
+
+![Visitor Count](https://profile-counter.glitch.me/Sliverkiss/count.svg)
+
 ## 简介
 
-本仓库主要用于收集和整理各位大佬(尤其是Sliverkiss)写的脚本，以便能够快速找到所需要的项目，更好地服务于QuantumultX软件的使用者。本仓库仅负责整理链接订阅，没有任何的脚本文件，所以请不要Fork。如果侵权请联系删除，hank you～
+本仓库主要用于收集和整理各位大佬(尤其是Sliverkiss)写的脚本，以便能够快速找到所需要的项目，更好地服务于QuantumultX软件的使用者。本仓库仅负责整理链接订阅，没有任何的脚本文件，所以请不要Fork。如果侵权请联系删除，Thank you～
 
 
  ## 免责声明
@@ -24,9 +33,6 @@
 
 * 本项目保留随时对免责声明进行补充或更改的权利，直接或间接使用本项目内容的个人或组织，视为接受本项目的特别声明。
 
-## Star🌟
-
-<img src="https://api.star-history.com/svg?repos=JasonChiang1916/js&type=Date" alt="Star History Chart" width="600" height="356" align="center">
 
 ## 特别感谢
 *  [@Sliverkiss](https://github.com/Sliverkiss)
