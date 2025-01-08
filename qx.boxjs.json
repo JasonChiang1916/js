@@ -1,1 +1,283 @@
 
+{
+    "id": "1916.sub",
+    "name": "qx签到脚本订阅",
+    "author": "@1916",
+    "icon": "https://avatars.githubusercontent.com/u/109706965?v=4",
+    "repo": "",
+    "apps": [
+        {
+            "id": "sliverkiss_youzan",
+            "name": "有赞签到盒",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png"
+            ],
+            "keys": [
+                "is_newOcr",
+                "sliverkiss_ocr",
+                "youzan_accounts",
+                "youzan_store"
+            ],
+            "settings": [
+                {
+                    "id": "is_newOcr",
+                    "name": "是否使用新ocr接口",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "sliverkiss_ocr",
+                    "name": "ocr接口",
+                    "val": "",
+                    "type": "text",
+                    "autoGrow": true,
+                    "desc": "填入自己搭建的ocr接口,旧接口为http://127.0.0.1:9898/slide/match/b64/json,新接口为http://127.0.0.1:8000/slide_match"
+                },
+                {
+                    "id": "youzan_accounts",
+                    "name": "会员数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "账号&密码，多账号用空格分割"
+                },
+                {
+                    "id": "youzan_store",
+                    "name": "签到店铺数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": ""
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_dlm",
+            "name": "达美乐披萨",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Dlm.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Dlm.png"
+            ],
+            "keys": [
+                "dlm_score",
+                "dlm_notify",
+                "dlm_date",
+                "dlm_game",
+                "dlm_data"
+            ],
+            "settings": [
+                {
+                    "id": "dlm_score",
+                    "name": "开启内置分数(1425)",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "dlm_notify",
+                    "name": "开启简略通知模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "dlm_game",
+                    "name": "活动id",
+                    "val": "",
+                    "type": "text",
+                    "desc": "活动id"
+                },
+                {
+                    "id": "dlm_date",
+                    "name": "活动时间",
+                    "val": "",
+                    "type": "text",
+                    "desc": "自定义活动时间，如2024.04.23-2024.06.22"
+                },
+                {
+                    "id": "dlm_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_zgrb",
+            "name": "中国人保",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/zgrb.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/zgrb.png"
+            ],
+            "keys": [
+                "zgrb_ecard",
+                "zgrb_data"
+            ],
+            "settings": [
+                {
+                    "id": "zgrb_ecard",
+                    "name": "开启自动兑换e卡",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "zgrb_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_mxbc",
+            "name": "蜜雪冰城",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/mxbc.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/mxbc.png"
+            ],
+            "keys": [
+                "mxbc_data"
+            ],
+            "settings": [
+                {
+                    "id": "mxbc_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_rbxj",
+            "name": "云养小鸡",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/rbxj.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/rbxj.png"
+            ],
+            "keys": [
+                "rbxj_data"
+            ],
+            "settings": [
+                {
+                    "id": "rbxj_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_picc",
+            "name": "picc农场",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/picc.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/picc.png"
+            ],
+            "keys": [
+                "picc_data"
+            ],
+            "settings": [
+                {
+                    "id": "picc_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_aliyun",
+            "name": "阿里云盘",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png",
+                "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png"
+            ],
+            "keys": [
+                "aliyun_data"
+            ],
+            "settings": [
+                {
+                    "id": "aliyun_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_midea",
+            "name": "美的会员",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Midea.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Midea.png"
+            ],
+            "keys": [
+                "midea_data"
+            ],
+            "settings": [
+                {
+                    "id": "midea_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        },
+        {
+            "id": "sliverkiss_naixue",
+            "name": "奈雪的茶",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/sliverkiss/QuantumultX/main/icon/naixue.png",
+                "https://raw.githubusercontent.com/sliverkiss/QuantumultX/main/icon/naixue.png"
+            ],
+            "keys": [
+                "naixue_data"
+            ],
+            "settings": [
+                {
+                    "id": "naixue_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
+        }
+    ]
+}
