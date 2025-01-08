@@ -278,6 +278,560 @@
                     "desc": "会员Cookie数据"
                 }
             ]
+        },
+        {
+            "id": "fmz200_smzdm",
+            "name": "什么值得买cookie",
+            "keys": [
+                "SMZDM_COOKIE",
+                "fmz200_smzdm_cookie"
+            ],
+            "descs_html": [
+                "填写cookie，有两种不同的存储方式"
+            ],
+            "settings": [
+                {
+                    "id": "SMZDM_COOKIE",
+                    "name": "什么值得买cookie，多账号用英文逗号(@)分隔",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": false,
+                    "rows": 8,
+                    "desc": ""
+                },
+                {
+                    "id": "fmz200_smzdm_cookie",
+                    "name": "什么值得买cookie，多账号使用JSON存储",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": false,
+                    "rows": 8,
+                    "desc": ""
+                }
+            ],
+            "icons": [
+                "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/smzdm.png",
+                "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/smzdm.png"
+            ],
+            "author": "@fmz200",
+            "repo": "https://github.com/fmz200/wool_scripts"
+        },
+        {
+            "id": "fmz200_oil_price",
+            "name": "今日油价",
+            "keys": [
+                "oil_price_region"
+            ],
+            "descs_html": [
+                "填写需要查询的地区"
+            ],
+            "settings": [
+                {
+                    "id": "oil_price_region",
+                    "name": "今日油价查询地区",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "今日油价查询地区"
+                }
+            ],
+            "icons": [
+                "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/oil.png",
+                "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/oil.png"
+            ],
+            "author": "@fmz200",
+            "repo": "https://github.com/fmz200/wool_scripts"
+        },
+        {
+            "id": "jparking",
+            "name": "捷停车",
+            "author": "@FoKit",
+            "script": "https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jparking_sign.js",
+            "descs_html": [
+                "捷停车签到"
+            ],
+            "icons": [
+                "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jparking.png",
+                "https://raw.githubusercontent.com/FoKit/Scripts/main/images/jparking.png"
+            ],
+            "keys": [
+                "jtc_userId"
+            ],
+            "settings": [
+                {
+                    "id": "jtc_userId",
+                    "name": "用户ID",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "placeholder": "userId1@userId2",
+                    "desc": "多个ID@隔开"
+                }
+            ]
+        },
+        {
+            "id": "wechat_pay_coupon",
+            "name": "微信支付有优惠",
+            "author": "@FoKit",
+            "script": "https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/wechat_pay_coupon.js",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/FoKit/Scripts/main/images/wechat_pay_coupon.png",
+                "https://raw.githubusercontent.com/FoKit/Scripts/main/images/wechat_pay_coupon.png"
+            ],
+            "descs_html": [
+                "微信支付有优惠 - 领金币"
+            ],
+            "keys": [
+                "wechat_pay_token",
+                "wechat_pay_version",
+                "wechat_pay_exchange",
+                "wechat_pay_exchange_award"
+            ],
+            "settings": [
+                {
+                    "id": "wechat_pay_token",
+                    "name": "用户信息",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": ""
+                },
+                {
+                    "id": "wechat_pay_version",
+                    "name": "版本号",
+                    "val": "",
+                    "type": "text",
+                    "desc": ""
+                },
+                {
+                    "id": "wechat_pay_exchange",
+                    "name": "兑换好礼",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "兑换立减金"
+                },
+                {
+                    "id": "wechat_pay_exchange_award",
+                    "name": "兑换信息",
+                    "val": "",
+                    "type": "text",
+                    "desc": ""
+                }
+            ]
+        },
+        {
+            "id": "WxCode",
+            "name": "Code Server",
+            "author": "@FoKit",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/FoKit/Scripts/main/images/WeChat.png",
+                "https://raw.githubusercontent.com/FoKit/Scripts/main/images/WeChat.png"
+            ],
+            "keys": [
+                "codeServer"
+            ],
+            "settings": [
+                {
+                    "id": "@codeServer.open",
+                    "name": "开启code模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "@codeServer.address",
+                    "name": "服务器地址",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "填入服务器地址, 不包括/, 如http://127.0.0.1"
+                },
+                {
+                    "id": "@codeServer.guid",
+                    "name": "实例 GUID",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "微信实例 GUID"
+                },
+                {
+                    "id": "@codeServer.password",
+                    "name": "接口密码",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "API 接口密码"
+                },
+                {
+                    "id": "@codeServer.fun",
+                    "name": "自定义函数",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 1,
+                    "desc": "API 接口自定义函数"
+                }
+            ]
+        },
+        {
+            "id": "yuheng.moyu",
+            "name": "摸鱼",
+            "descs_html": [
+                "<p style='margin-left:20px;'>添加自定义节日参考配置: </p>",
+                "<p style='margin-left:20px;'><节日1>&<节日2>&节日名称:(YYYY年)?MM月DD日($农历)($阳历)?&...</p>",
+                "<p style='margin-left:20px;'>例子: </p>",
+                "<p style='margin-left:20px;'><元宵节>&<清明节>&<劳动节>&<端午节>&<中秋节>&<国庆节>&<元旦>&<春节>&老婆农历阳历生日:3月14日$农历$阳历&老婆阳历农历生日:3月14日$阳历$农历&老婆农历生日:3月14日$农历&老婆带阳历生日:3月14日$阳历&老婆阳历生日:3月14日",
+                "<p style='margin-left:20px;color:#ff0000;font-weight:900;font-size:30px;'>不懂请不要乱动! </p>"
+            ],
+            "keys": [
+                "moyu_notify_with_media",
+                "moyu_debug",
+                "moyu_show_another_date",
+                "moyu_show_almanac",
+                "moyu_custom_notify_img",
+                "moyu_remind_days",
+                "moyu_festival_conf"
+            ],
+            "settings": [
+                {
+                    "id": "moyu_notify_with_media",
+                    "name": "是否通知带图片",
+                    "val": true,
+                    "type": "boolean",
+                    "desc": ""
+                },
+                {
+                    "id": "moyu_debug",
+                    "name": "是否开启调试模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": ""
+                },
+                {
+                    "id": "moyu_show_another_date",
+                    "name": "当传入日期为阳历时, 是否展示农历, 当传入阴历时, 是否展示阳历",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "比如老婆生日:3月15日, 如果勾选, 通知时会带上距离农历还有xx天"
+                },
+                {
+                    "id": "moyu_show_almanac",
+                    "name": "是否展示黄历",
+                    "val": true,
+                    "type": "boolean",
+                    "desc": "顾名思义"
+                },
+                {
+                    "id": "moyu_custom_notify_img",
+                    "name": "🔗通知图片(链接)",
+                    "val": null,
+                    "type": "textarea",
+                    "rows": 5,
+                    "desc": "不填随机选择"
+                },
+                {
+                    "id": "moyu_remind_days",
+                    "name": "距离多少天提醒",
+                    "val": 100,
+                    "type": "text",
+                    "rows": 1,
+                    "desc": "比如默认100天, 超过100天的节日不通知"
+                },
+                {
+                    "id": "moyu_festival_conf",
+                    "name": "节日配置",
+                    "val": "<元宵节>&<清明节>&<劳动节>&<端午节>&<中秋节>&<国庆节>&<元旦>&<春节>",
+                    "type": "textarea",
+                    "rows": 10,
+                    "desc": "自定义规范: <节日1>&<节日2>&节日名称:(YYYY年)?MM月DD日($农历)($阳历)?&..."
+                }
+            ],
+            "author": "@yuheng",
+            "repo": "https://github.com/Yuheng0101/X",
+            "icons": [
+                "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/67/04/ff/6704ff4c-b49b-de91-70ac-201c62d5296f/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png",
+                "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/67/04/ff/6704ff4c-b49b-de91-70ac-201c62d5296f/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png"
+            ],
+            "script": "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/moyu.js"
+        },
+        {
+            "id": "yuheng.imaotai.v1.5",
+            "name": "i茅台预约",
+            "descs_html": [
+                "<p style='margin-left:20px;margin-top:20px;color:#ff0000;'>请注意如果不配置,默认选择填写的作为预约参数</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#ecf0f1;'>如(是否选择投放量最大门店): true</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#ecf0f1;'>如(是否开启茅运[茅运不足100请关闭]): true</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#ecf0f1;'>如(省份配置): 贵州省</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#ecf0f1;'>如(城市配置): 贵阳市</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#ecf0f1;'>如(预约项配置): 10941,10942</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#ecf0f1;'>如(详细地址): 贵阳市南明区花果园</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#ecf0f1;'>如(经纬度): 106.713478,26.573743</p>",
+                "<p style='margin-left:20px;margin-top:20px;color:#9b59b6;'>多说一句,经纬度你知道就填,不知道只填详细地址就好,经纬度优先级高于地址,如果填写经纬度,详细地址的作用将失效</p>"
+            ],
+            "keys": [
+                "imaotai_debug",
+                "imaotai_mobile",
+                "imaotai_code",
+                "imaotai_params",
+                "imaotai__config__islarge",
+                "imaotai__config__istravel",
+                "imaotai__config__province",
+                "imaotai__config__city",
+                "imaotai__config__itemcode",
+                "imaotai__config__address",
+                "imaotai__config__location",
+                "imaotai_debug",
+                "imaotai_bark_key"
+            ],
+            "settings": [
+                {
+                    "id": "imaotai_debug",
+                    "name": "是否开启调试模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": ""
+                },
+                {
+                    "id": "imaotai_mobile",
+                    "name": "手机号(用于获取验证码)",
+                    "val": null,
+                    "type": "text",
+                    "desc": ""
+                },
+                {
+                    "id": "imaotai_code",
+                    "name": "验证码",
+                    "val": null,
+                    "type": "text",
+                    "desc": "务必先执行获取验证码接口再填写该字段"
+                },
+                {
+                    "id": "imaotai__config__islarge",
+                    "name": "预约方式[是否开启最大投放量]",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": ""
+                },
+                {
+                    "id": "imaotai__config__istravel",
+                    "name": "是否开启茅运旅行[⚠️临时停用]",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": ""
+                },
+                {
+                    "id": "imaotai__config__province",
+                    "name": "*省份名称, 如: 贵州省",
+                    "val": null,
+                    "type": "text",
+                    "rows": 1,
+                    "desc": "必填"
+                },
+                {
+                    "id": "imaotai__config__city",
+                    "name": "*城市名称, 如: 贵阳市",
+                    "val": null,
+                    "type": "text",
+                    "rows": 1,
+                    "desc": "必填"
+                },
+                {
+                    "id": "imaotai__config__itemcode",
+                    "name": "*预约项",
+                    "val": "11318,11317,11319,2478,11240",
+                    "type": "checkboxes",
+                    "items": [
+                        {
+                            "key": "11318",
+                            "label": "53%vol 500ml贵州茅台酒（乙巳蛇年）"
+                        },
+                        {
+                            "key": "11317",
+                            "label": "53%vol 500ml贵州茅台酒（笙乐飞天）"
+                        },
+                        {
+                            "key": "11319",
+                            "label": "53%vol 375ml×2贵州茅台酒（乙巳蛇年）"
+                        },
+                        {
+                            "key": "2478",
+                            "label": "贵州茅台酒（珍品）"
+                        },
+                        {
+                            "key": "11240",
+                            "label": "53%vol 500ml 茅台1935·中国国家地理文创酒（喜逢大运河）"
+                        }
+                    ]
+                },
+                {
+                    "id": "imaotai__config__address",
+                    "name": "当前位置(与经纬度二选一, 建议填写地址)",
+                    "val": null,
+                    "type": "text",
+                    "rows": 1,
+                    "desc": "尽量具体, 比如: 山东省济南市齐鲁软件园, 精确到标志性建筑物"
+                },
+                {
+                    "id": "imaotai__config__location",
+                    "name": "(选填)当前经纬度",
+                    "val": null,
+                    "type": "text",
+                    "rows": 1,
+                    "desc": "注意经度在前, 纬度在后, 例如: 117.119999,36.651216,不填根据当前位置获取"
+                },
+                {
+                    "id": "imaotai_bark_key",
+                    "name": "Bark通知",
+                    "val": null,
+                    "type": "text",
+                    "rows": 1,
+                    "desc": "填写Bark的app提供的key, 填写后不再使用默认通知方式"
+                },
+                {
+                    "id": "amap_api",
+                    "name": "(选填)高德开发者Key",
+                    "val": null,
+                    "type": "text",
+                    "rows": 1,
+                    "desc": "后续key失效后需要填写"
+                }
+            ],
+            "author": "@yuheng",
+            "repo": "https://github.com/Yuheng0101/X",
+            "icons": [
+                "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/ae/f4/18/aef41811-955e-e6b0-5d23-6763c2eef1ab/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144.png",
+                "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/ae/f4/18/aef41811-955e-e6b0-5d23-6763c2eef1ab/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144.png"
+            ],
+            "scripts": [
+                {
+                    "name": "发送验证码（填 手机号, 保存, 执行）",
+                    "script": "https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Maotai/msg.js"
+                },
+                {
+                    "name": "用验证码登录（填 手机号, 验证码, 保存, 执行 ⚠️ 执行后 记得刷新）",
+                    "script": "https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/Maotai/login.js"
+                }
+            ]
+        },
+        {
+            "id": "yuheng.wuai",
+            "name": "吾爱破解",
+            "descs_html": [
+                "<a style='color:#686de0;display:block;text-align:center;' target='_blank' href='https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js'>脚本链接</a>"
+            ],
+            "keys": [
+                "wuai_debug",
+                "wuai_cookie",
+                "wuai_bark_key"
+            ],
+            "settings": [
+                {
+                    "id": "wuai_debug",
+                    "name": "是否开启调试模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": ""
+                },
+                {
+                    "id": "wuai_cookie",
+                    "name": "Cookie",
+                    "val": null,
+                    "type": "textarea",
+                    "rows": 5,
+                    "desc": ""
+                },
+                {
+                    "id": "wuai_bark_key",
+                    "name": "Bark密钥",
+                    "val": null,
+                    "type": "text",
+                    "desc": "填写后只使用Bark推送"
+                }
+            ],
+            "author": "@yuheng",
+            "repo": "https://github.com/Yuheng0101/X",
+            "icons": [
+                "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png",
+                "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png"
+            ],
+            "script": "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js"
+        },
+        {
+            "id": "Ctrip",
+            "name": "携程旅行",
+            "keys": [
+                "CTRIP_DAILY_BONUS"
+            ],
+            "descs_html": [
+                "<h4 align=\"center\">脚本说明以及配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/Ctrip-DailyBonus/Ctrip.js\">脚本注释</a></h4>"
+            ],
+            "settings": [
+                {
+                    "id": "@CTRIP_DAILY_BONUS.Debug",
+                    "name": "开发者模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "用于调试脚本, 一般用户请勿开启."
+                }
+            ],
+            "script": "https://raw.githubusercontent.com/NobyDa/Script/master/Ctrip-DailyBonus/Ctrip.js",
+            "author": "@NobyDa",
+            "repo": "https://github.com/NobyDa/Script/blob/master/Ctrip-DailyBonus/Ctrip.js",
+            "icons": [
+                "https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/ctrip.png",
+                "https://raw.githubusercontent.com/NobyDa/mini/master/Color/ctrip.png"
+            ]
+        },
+        {
+            "id": "yuheng.wuai",
+            "name": "吾爱破解",
+            "descs_html": [
+                "<a style='color:#686de0;display:block;text-align:center;' target='_blank' href='https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js'>脚本链接</a>"
+            ],
+            "keys": [
+                "wuai_debug",
+                "wuai_cookie",
+                "wuai_bark_key"
+            ],
+            "settings": [
+                {
+                    "id": "wuai_debug",
+                    "name": "是否开启调试模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": ""
+                },
+                {
+                    "id": "wuai_cookie",
+                    "name": "Cookie",
+                    "val": null,
+                    "type": "textarea",
+                    "rows": 5,
+                    "desc": ""
+                },
+                {
+                    "id": "wuai_bark_key",
+                    "name": "Bark密钥",
+                    "val": null,
+                    "type": "text",
+                    "desc": "填写后只使用Bark推送"
+                }
+            ],
+            "author": "@yuheng",
+            "repo": "https://github.com/Yuheng0101/X",
+            "icons": [
+                "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png",
+                "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png"
+            ],
+            "script": "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js"
         }
     ]
 }
