@@ -1,6 +1,6 @@
 ## 简介
 
-本仓库主要用于收集和整理各位大佬写的脚本，以便能够快速找到所需要的项目，更好地服务于QuantumultX软件的使用者。本仓库仅负责整理链接订阅，没有任何的脚本文件，所以请不要Fork。如果你对本项目有任何意见，请在issue上提出。Thank you～
+本仓库主要用于收集和整理各位大佬(尤其是Sliverkiss)写的脚本，以便能够快速找到所需要的项目，更好地服务于QuantumultX软件的使用者。本仓库仅负责整理链接订阅，没有任何的脚本文件，所以请不要Fork。如果侵权请联系删除，hank you～
 
 
  ## 免责声明
@@ -26,7 +26,7 @@
 
 ## Star🌟
 
-<img src="https://api.star-history.com/svg?repos=sliverkiss/QuantumultX&type=Date" alt="Star History Chart" width="600" height="356" align="center">
+<img src="https://api.star-history.com/svg?repos=JasonChiang1916/js&type=Date" alt="Star History Chart" width="600" height="356" align="center">
 
 ## 特别感谢
 *  [@Sliverkiss](https://github.com/Sliverkiss)
