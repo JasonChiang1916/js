@@ -80,7 +80,7 @@
             "config": "0 7,13 * * * https://raw.githubusercontent.com/leiyiyan/resource/main/script/aliyun_web/aliyun_web.js, tag=阿里云社区日常任务, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/aliyunWeb.png, enabled=true"
         },
         {
-            "config": "19 9 * * * https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, tag=有赞小程序 每日签到,, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png, enabled=true"
+            "config": "19 9 * * * https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, tag=有赞小程序 每日签到, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png, enabled=true"
         },
         {
             "config": "0 9 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js, tag=吾爱破解签到, img-url=https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png, enabled=true"
