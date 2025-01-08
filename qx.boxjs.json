@@ -832,6 +832,178 @@
                 "https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png"
             ],
             "script": "https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js"
+        },
+        {
+            "id": "zZ.Haidilao",
+            "name": "海底捞",
+            "descs_html": [
+                "请先按<a href=\"https://raw.githubusercontent.com/zZPiglet/Task/master/Haidilao/Haidilao.js\">脚本注释</a>进行配置，然后进入\"海底捞\"app，手动签到一次或点击\"签到\"，若弹出\"首次写入海底捞等级 Token 成功\"及\"首次写入海底捞签到 Cookie 成功\"即可正常食用。",
+                "需要注意的是，有两条重写，一条为获取用户基本信息的，一条为签到的。两者独立互不影响，故即使没有获取到基础信息的，依旧可以签到，只是会有部分错误及 undefined。两次通知应该分别在进入\"我的\"及\"签到\"处通知。"
+            ],
+            "keys": [
+                "hilh",
+                "hilb",
+                "hich"
+            ],
+            "settings": [
+                {
+                    "id": "hilh",
+                    "name": "Token",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 3,
+                    "desc": "用户等级接口登陆验证信息 _HAIDILAO_APP_TOKEN。"
+                },
+                {
+                    "id": "@hilb._HAIDILAO_APP_TOKEN",
+                    "name": "Body._HAIDILAO_APP_TOKEN",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 2,
+                    "desc": "用户等级接口请求消息体，登陆验证信息，此部分应与 Token 中 _HAIDILAO_APP_TOKEN= 之后值一致。"
+                },
+                {
+                    "id": "@hilb.customerId",
+                    "name": "Body.customerId",
+                    "val": "",
+                    "type": "text",
+                    "desc": "用户等级接口请求消息体，用户编号。"
+                },
+                {
+                    "id": "@hilb.country",
+                    "name": "Body.country",
+                    "val": "",
+                    "type": "text",
+                    "desc": "用户等级接口请求消息体，国家。"
+                },
+                {
+                    "id": "hich",
+                    "name": "Cookie",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "rows": 7,
+                    "desc": "签到接口登陆验证信息，包含更多信息，可自行修改调试。"
+                }
+            ],
+            "author": "@zZPiglet",
+            "repo": "https://github.com/zZPiglet/Task/blob/master/Haidilao/Haidilao.js",
+            "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Haidilao/Haidilao.js",
+            "icons": [
+                "https://raw.githubusercontent.com/Orz-3/mini/master/haidilao.png",
+                "https://raw.githubusercontent.com/Orz-3/task/master/haidilao.png"
+            ]
+        },
+        {
+            "id": "Leiyiyan_Aliyun_Web",
+            "name": "阿里云社区",
+            "author": "@leiyiyan",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/leiyiyan/resource/main/icons/aliyun_web.png",
+                "https://raw.githubusercontent.com/leiyiyan/resource/main/icons/aliyun_web.png"
+            ],
+            "keys": [
+                "is_debug",
+                "aliyunWeb_data",
+                "aliyunWeb_time"
+            ],
+            "settings": [
+                {
+                    "id": "is_debug",
+                    "name": "开启调试模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "aliyunWeb_data",
+                    "name": "阿里云社区Cookie数据",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "阿里云社区Cookie数据"
+                },
+                {
+                    "id": "aliyunWeb_time",
+                    "name": "阿里云社区控制时间",
+                    "val": "12",
+                    "type": "input",
+                    "desc": "早于该时间则执行任务，晚于该时间则领取积分，默认: 12(即中午12点，为避免出现乱七八糟的问题，请设置: 1-23的整数)"
+                },
+                {
+                    "id": "aliyunWeb_scene",
+                    "name": "开启场景任务",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "控制是否开启场景任务，默认：关闭(false)"
+                },
+                {
+                    "id": "aliyunWeb_stock",
+                    "name": "开启库存查询",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "控制是否开启库存查询，默认：关闭(false)"
+                },
+                {
+                    "id": "aliyunWeb_video",
+                    "name": "开启视频任务",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "控制是否开启视频任务，默认：关闭(false)"
+                }
+            ]
+        },
+        {
+            "id": "Leiyiyan_Ningji",
+            "name": "柠季小程序",
+            "author": "@leiyiyan",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/leiyiyan/resource/main/icons/ningji.png",
+                "https://raw.githubusercontent.com/leiyiyan/resource/main/icons/ningji.png"
+            ],
+            "keys": [
+                "is_debug",
+                "ningji_data"
+            ],
+            "settings": [
+                {
+                    "id": "is_debug",
+                    "name": "开启调试模式",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "ningji_data",
+                    "name": "柠季小程序Token",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "柠季小程序Token"
+                }
+            ]
+        },
+        {
+            "id": "chavyleung.meituan",
+            "name": "美团",
+            "keys": [
+                "chavy_tokenurl_meituan",
+                "chavy_tokenheader_meituan",
+                "chavy_signurl_meituan",
+                "chavy_signheader_meituan",
+                "chavy_signbody_meituan"
+            ],
+            "author": "@chavyleung",
+            "repo": "https://github.com/chavyleung/scripts/blob/master/meituan/meituan.js",
+            "script": "https://raw.githubusercontent.com/chavyleung/scripts/master/meituan/meituan.js",
+            "icons": [
+                "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/meituan.png",
+                "https://raw.githubusercontent.com/Orz-3/mini/master/Color/meituan.png"
+            ]
         }
     ]
 }
