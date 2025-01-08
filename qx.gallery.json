@@ -19,8 +19,8 @@
             "addons": "https://gist.githubusercontent.com/Sliverkiss/b564306f40741c8d549409fbe6c2aae9/raw/hldc.conf, tag=哈啰单车获取token"
         },
         {
-            "config": "0 7,11 * * * https://gist.githubusercontent.com/Sliverkiss/33800a98dcd029ba09f8b6fc6f0f5162/raw/aliyun.js, tag=阿里云签到, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png, enabled=false",
-            "addons": "https://gist.githubusercontent.com/Sliverkiss/b564306f40741c8d549409fbe6c2aae9/raw/aliiyun.conf, tag=阿里云获取token"
+            "config": "0 7,11 * * * https://gist.githubusercontent.com/Sliverkiss/33800a98dcd029ba09f8b6fc6f0f5162/raw/aliyun.js, tag=阿里云盘签到, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png, enabled=false",
+            "addons": "https://gist.githubusercontent.com/Sliverkiss/b564306f40741c8d549409fbe6c2aae9/raw/aliiyun.conf, tag=阿里云盘获取token"
         },
         {
             "config": "5 10 * * * https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_daily.js, tag=什么值得买每日签到, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Smzdm.png, enabled=false",
@@ -77,10 +77,10 @@
             "config": " * 0 8 * * * https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/oil_price.js, tag=今日油价, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/oil.png, enabled=true"
         },
         {
-            "config": "0 7,13 * * * https://raw.githubusercontent.com/leiyiyan/resource/main/script/aliyun_web/aliyun_web.js, tag=阿里云社区日常任务, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png, enabled=true"
+            "config": "0 7,13 * * * https://raw.githubusercontent.com/leiyiyan/resource/main/script/aliyun_web/aliyun_web.js, tag=阿里云社区日常任务, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/aliyunWeb.png, enabled=true"
         },
         {
-            "config": "0 7,13 * * * https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, tag=Sakura Checkbox, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png, enabled=true"
+            "config": "19 9 * * * https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, tag=有赞小程序 每日签到,, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png, enabled=true"
         },
         {
             "config": "0 9 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js, tag=吾爱破解签到, img-url=https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png, enabled=true"
@@ -96,6 +96,9 @@
         },
         {
             "config": "30 9 * * * https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/wechat_pay_coupon.js, tag=微付金币, img-url=https://raw.githubusercontent.com/FoKit/Scripts/main/images/wechat_pay_coupon.png, enabled=true"
+        },
+        {
+            "config": "11 6,12,18,0 * * * https://gist.githubusercontent.com/Sliverkiss/8ab75614fe77cee3cc388b15de70176b/raw/picc.js, tag=picc 农场, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/picc.png, enabled=true"
         }
     ]
 }
