@@ -77,12 +77,25 @@
             "config": " * 0 8 * * * https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/oil_price.js, tag=今日油价, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/oil.png, enabled=true"
         },
         {
-            "config": "0 7,13 * * * https://raw.githubusercontent.com/leiyiyan/resource/main/script/aliyun_web/aliyun_web.js, tag=阿里云社区日常任务, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png, enabled=true",
-            "addons": "https://raw.githubusercontent.com/leiyiyan/resource/main/script/aliyun_web/aliyun_web.js, tag=阿里云Web Cookie"
+            "config": "0 7,13 * * * https://raw.githubusercontent.com/leiyiyan/resource/main/script/aliyun_web/aliyun_web.js, tag=阿里云社区日常任务, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AliYunDrive.png, enabled=true"
         },
         {
-            "config": "0 7,13 * * * https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, tag=Sakura Checkbox, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png, enabled=true",
-            "addons": "https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, tag=Sakura Checkbox获取token"
+            "config": "0 7,13 * * * https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, tag=Sakura Checkbox, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Checkbox.png, enabled=true"
+        },
+        {
+            "config": "0 9 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js, tag=吾爱破解签到, img-url=https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png, enabled=true"
+        },
+        {
+            "config": "30 6,13,20 * * * https://gist.githubusercontent.com/Sliverkiss/354b1080735241fd1c7baa62598302d5/raw/rbxj.js, tag=云养小鸡, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/rbxj.png, enabled=false"
+        },
+        {
+            "config": "3 10 * * * https://raw.githubusercontent.com/wf021325/qx/refs/heads/main/task/wps.js, tag=WPS签到, img-url=https://s21.ax1x.com/2024/11/14/pAgrz6S.png, enabled=true"
+        },
+        {
+            "config": "0 0 1 1 * https://raw.githubusercontent.com/Sliverkiss/awesome/refs/heads/main/wx_pay_code.js, tag=微信支付有优惠 code续期, img-url=https://raw.githubusercontent.com/FoKit/Scripts/main/images/wechat_pay_coupon.png, enabled=true"
+        },
+        {
+            "config": "30 9 * * * https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/wechat_pay_coupon.js, tag=微付金币, img-url=https://raw.githubusercontent.com/FoKit/Scripts/main/images/wechat_pay_coupon.png, enabled=true"
         }
     ]
 }
