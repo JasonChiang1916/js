@@ -105,13 +105,13 @@ async function doTask(taskId, apitoken) {
 
 async function lottery(apitoken) {
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
-    const response = await fetchRequest("POST", LOTTERY_URL, headers, null, { code });
+    const response = await fetchRequest("POST", LOTTERY_URL, headers, null, playload);
     return response;
 }
 
-async function marketingLottery(apitoken, code) {
+async function marketingLottery(apitoken) {
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
-    const response = await fetchRequest("POST", MARKETING_LOTTERY_URL, headers, null, { code });
+    const response = await fetchRequest("POST", MARKETING_LOTTERY_URL, headers, null, playload);
 
     if (response && response.code === 500) {
         console.log(response.msg);
@@ -158,7 +158,7 @@ async function processAccount(apitoken) {
     let prizeMessages = [];
     if (everyDataCounted < 3) {
         for (let i = 0; i < 3 - everyDataCounted; i++) {
-            const prizeMessage = await marketingLottery(apitoken, code);
+            const prizeMessage = await marketingLottery(apitoken);
             if (prizeMessage) {
                 prizeMessages.push(prizeMessage);
             }
