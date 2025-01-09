@@ -6,7 +6,7 @@
  
 --------------- Quantumult X 配置---------------
 [task_local]
-30 9 * * * nfsq.js, tag=农夫山泉生肖水, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true
+30 9 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsq.js, tag=农夫山泉生肖水, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true
 
 ******************************************/
 
