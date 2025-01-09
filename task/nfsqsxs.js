@@ -112,12 +112,22 @@ async function lottery(apitoken) {
 async function marketingLottery(apitoken, code) {
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
     const response = await fetchRequest("POST", MARKETING_LOTTERY_URL, headers, null, { code });
+
     if (response && response.code === 500) {
         console.log(response.msg);
-    } else if (response && response.data) {
-        console.log(response.data.prizedto.prize_name);
+        return null;
+    } else if (response && response.data && response.data.prizedto) {
+        const prizeInfo = response.data.prizedto;
+        const prizeName = prizeInfo.prize_name || "未知奖品";
+        const prizeLevel = prizeInfo.prize_level || "未知等级";
+        console.log(`🎉 恭喜中奖：${prizeName}，等级：${prizeLevel}`);
+        return `🎁 ${prizeName}（等级：${prizeLevel}）`;
+    } else {
+        console.log("未获取到有效的中奖信息");
+        return null;
     }
 }
+
 
 async function todayCount(apitoken) {
     const headers = { ...HEADERS, 'apitoken': apitoken };
@@ -145,9 +155,13 @@ async function processAccount(apitoken) {
     const everyDataCounted = await todayCount(apitoken);
     console.log("每日赠送抽奖", `[${everyDataCounted}/3]`);
 
+    let prizeMessages = [];
     if (everyDataCounted < 3) {
         for (let i = 0; i < 3 - everyDataCounted; i++) {
-            await marketingLottery(apitoken, code);
+            const prizeMessage = await marketingLottery(apitoken, code);
+            if (prizeMessage) {
+                prizeMessages.push(prizeMessage);
+            }
             await randomSleep();
         }
     }
@@ -183,8 +197,11 @@ async function processAccount(apitoken) {
         if (lotteryMes && lotteryMes.success === false) {
             console.log(lotteryMes.msg);
             break;
+        } else if (lotteryMes && lotteryMes.data) {
+            console.log(lotteryMes.data);
+            prizeMessages.push(`🎁 ${lotteryMes.data}`);
         } else {
-            console.log(lotteryMes.data || "请求失败");
+            console.log("抽奖请求失败");
         }
         await randomSleep();
     }
@@ -198,15 +215,16 @@ async function processAccount(apitoken) {
         }
     }
     console.log(goodsMsg);
-    $notify("农夫山泉抽奖结果", `账号：${nickName || userNo}`, goodsMsg);
+    
+    // 合并中奖信息
+    const finalPrizeMessage = prizeMessages.length > 0 ? prizeMessages.join("\n") : "未中奖";
+    $notify("农夫山泉抽奖结果", `账号：${nickName || userNo}`, `${goodsMsg}\n中奖详情：\n${finalPrizeMessage}`);
 }
 
+
 (async () => {
-    let summary = "所有账号执行完毕。\n";
     for (const apitoken of apitokenList) {
         await processAccount(apitoken);
-        summary += `账号 ${apitoken} 已完成\n`;
     }
-    $notify("农夫山泉任务", "执行结果", summary);
     $done();
 })();
