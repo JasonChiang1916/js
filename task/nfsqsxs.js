@@ -209,6 +209,7 @@ async function processAccount(apitoken) {
     console.log("======查询奖品======");
     const goodsList = await goodsSimple(apitoken);
     let goodsMsg = "奖品清单：\n";
+ console.log(goodsList);
     for (const good of goodsList) {
         if (good.win_goods_sub_type) {
             goodsMsg += `🎁 ${good.win_goods_name}\n`;
