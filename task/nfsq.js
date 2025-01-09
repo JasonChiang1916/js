@@ -32,12 +32,18 @@ const HEADERS = {
 };
 
 const apitokens = $prefs.valueForKey("nfsq");
+const nfsqplayload = $prefs.valueForKey("nfsqplayload");
 if (!apitokens) {
     $notify("错误", "", "没有配置 nfsq 环境变量");
     $done();
 }
+if (!nfsqplayload) {
+    $notify("错误", "", "没有配置 nfsqplayload 环境变量");
+    $done();
+}
 
 const apitokenList = apitokens.split("#");
+const playload=JSON.parse(nfsqplayload);
 
 function fetchRequest(method, url, headers, params, body) {
     const options = {
@@ -79,30 +85,12 @@ async function doTask(taskId, apitoken) {
 }
 
 async function lottery(apitoken) {
-    const payload = {
-        "code": "SCENE-24121018362724",
-        "provice_name": "上海市",
-        "city_name": "上海市",
-        "area_name": "浦东新区",
-        "address": "上海市浦东新区东方路121号",
-        "longitude": 121.520630,
-        "dimension": 31.239136
-    };
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
     const response = await fetchRequest("POST", LOTTERY_URL, headers, null, payload);
     return response;
 }
 
 async function marketingLottery(apitoken, code) {
-    const payload = {
-        "code": code,
-        "provice_name": "上海市",
-        "city_name": "上海市",
-        "area_name": "浦东新区",
-        "address": "上海市浦东新区东方路121号",
-        "longitude": 121.520630,
-        "dimension": 31.239136
-    };
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
     const response = await fetchRequest("POST", MARKETING_LOTTERY_URL, headers, null, payload);
     if (response && response.code === 500) {
