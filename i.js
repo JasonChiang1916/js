@@ -77,7 +77,7 @@ var itemMap = {
     } else {
         $.log(`从缓存中获取到商铺地图数据`)
     }
-    $.log(JSON.stringify(dictionary))
+    // $.log(JSON.stringify(dictionary))
     maotai.dictionary = dictionary
     if (!maotai.shopId) {
         var shopId = await maotai.getNearbyStore()
@@ -187,6 +187,7 @@ function Maotai() {
             var url = `https://static.moutai519.com.cn/mt-backend/xhr/front/mall/shop/list/slim/v3/${this.sessionId
                 }/${encodeURIComponent(province)}/${itemCode}/${_ts}`
             var { body: response } = await service.get({ url })
+            $.log(JSON.stringify(response))
             var { code, data, message } = JSON.parse(response)
             if (code !== 2000) throw `获取店铺列表失败, ${message}`
             var { shops } = data
