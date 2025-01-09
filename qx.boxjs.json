@@ -992,6 +992,29 @@
                 "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/meituan.png",
                 "https://raw.githubusercontent.com/Orz-3/mini/master/Color/meituan.png"
             ]
+        },
+        {
+            "id": "nfsq",
+            "name": "农夫山泉生肖水",
+            "author": "@1916",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png"
+            ],
+            "keys": [
+                "nfsq"
+            ],
+            "settings": [
+                {
+                    "id": "nfsq",
+                    "name": "农夫山泉生肖水Token",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "多个token用#分割"
+                }
+            ]
         }
     ]
 }
