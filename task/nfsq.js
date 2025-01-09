@@ -43,7 +43,8 @@ if (!nfsqplayload) {
 }
 
 const apitokenList = apitokens.split("#");
-const playload = nfsqplayload;
+const playload = JSON.parse(nfsqplayload);
+const code=playload.code;
 
 function fetchRequest(method, url, headers, params, body) {
     const options = {
@@ -122,7 +123,6 @@ async function processAccount(apitoken) {
     console.log("每日赠送抽奖", `[${everyDataCounted}/3]`);
 
     if (everyDataCounted < 3) {
-        const code = "SCENE-24121018345681";
         for (let i = 0; i < 3 - everyDataCounted; i++) {
             await marketingLottery(apitoken, code);
             await new Promise(resolve => setTimeout(resolve, 1000));
