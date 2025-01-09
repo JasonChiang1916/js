@@ -43,7 +43,7 @@ if (!nfsqplayload) {
 }
 
 const apitokenList = apitokens.split("#");
-const playload=JSON.parse(nfsqplayload);
+const playload = nfsqplayload;
 
 function fetchRequest(method, url, headers, params, body) {
     const options = {
