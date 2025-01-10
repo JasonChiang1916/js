@@ -232,16 +232,16 @@ function GetCookie() {
         const headers = $request.headers;
         const body = $request.body;
 
-        // 提取请求头中的 token
+        // 提取请求头中的 apitoken
         const token = headers['apitoken'];
 
-        // 解析请求体中的 key-value
+        // 解析请求体为 JSON 对象
         let keyValuePairs = {};
         if (body) {
             try {
                 keyValuePairs = JSON.parse(body);
             } catch (e) {
-                console.log('请求体不是 JSON 格式');
+                console.log('请求体解析失败：', e);
             }
         }
 
@@ -258,9 +258,9 @@ function GetCookie() {
             console.log(`nfsqplayload已保存: ${JSON.stringify(keyValuePairs)}`);
             $notify("🍀 获取nfsqplayload成功", "", JSON.stringify(keyValuePairs));
         }
-        $done();
     } catch (e) {
         $notify("⛔️ 获取Cookie失败", "", `错误: ${e.message}`);
+    } finally {
         $done();
     }
 }
