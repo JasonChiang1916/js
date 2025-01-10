@@ -3,8 +3,14 @@
  * @author 1916
  * @update 20250109
  * @version 1.1.0
- 
+ * @description 先人工抽奖一次获取token
 --------------- Quantumult X 配置---------------
+[mitm]
+hostname = gateway.jmhd8.com
+
+[rewrite_local]
+^https://gateway\.jmhd8\.com/geement\.marketinglottery/api/v1/marketinglottery url script-request-body https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.js
+
 [task_local]
 30 9 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.js, tag=农夫山泉生肖水, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true
 
