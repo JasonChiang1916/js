@@ -30,20 +30,6 @@ const HEADERS = {
     'accept-language': "zh-CN,zh;q=0.9"
 };
 
-const apitokens = $prefs.valueForKey("nfsq");
-const nfsqplayload = $prefs.valueForKey("nfsqplayload");
-if (!apitokens) {
-    $notify("错误", "", "没有配置 nfsq 环境变量");
-    $done();
-}
-if (!nfsqplayload) {
-    $notify("错误", "", "没有配置 nfsqplayload 环境变量");
-    $done();
-}
-
-const apitokenList = apitokens.split("#");
-const playload = JSON.parse(nfsqplayload);
-
 function fetchRequest(method, url, headers, params, body) {
     let query = params ? '?' + new URLSearchParams(params).toString() : '';
     const options = {
@@ -101,13 +87,13 @@ async function doTask(taskId, apitoken) {
     console.log(JSON.stringify(response));
 }
 
-async function lottery(apitoken) {
+async function lottery(apitoken, playload) {
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
     const response = await fetchRequest("POST", LOTTERY_URL, headers, null, playload);
     return response;
 }
 
-async function marketingLottery(apitoken) {
+async function marketingLottery(apitoken, playload) {
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
     const response = await fetchRequest("POST", MARKETING_LOTTERY_URL, headers, null, playload);
 
@@ -141,7 +127,7 @@ async function goodsSimple(apitoken) {
     return response && response.data ? response.data : [];
 }
 
-async function processAccount(apitoken) {
+async function processAccount(apitoken, playload) {
     const [userNo, nickName] = await login(apitoken);
     if (!userNo) {
         console.log("账号登录失败，跳过");
@@ -156,7 +142,7 @@ async function processAccount(apitoken) {
     let prizeMessages = [];
     if (everyDataCounted < 3) {
         for (let i = 0; i < 3 - everyDataCounted; i++) {
-            const prizeMessage = await marketingLottery(apitoken);
+            const prizeMessage = await marketingLottery(apitoken, playload);
             if (prizeMessage) {
                 prizeMessages.push(prizeMessage);
             }
@@ -185,7 +171,7 @@ async function processAccount(apitoken) {
             for (let i = 0; i < allowCompleteCount - completeCount; i++) {
                 await doTask(taskId, apitoken);
                 await randomSleep();
-                marketingLottery(apitoken).then(prizeMessage => {
+                marketingLottery(apitoken, playload).then(prizeMessage => {
                     if (prizeMessage) {
                         prizeMessages.push(prizeMessage);
                     }
@@ -197,7 +183,7 @@ async function processAccount(apitoken) {
 
     console.log("执行时来运转游戏");
     for (let i = 0; i < 3; i++) {
-        const lotteryMes = await lottery(apitoken);
+        const lotteryMes = await lottery(apitoken, playload);
         if (lotteryMes && lotteryMes.success === false) {
             console.log(lotteryMes.msg);
             break;
@@ -271,8 +257,22 @@ function GetCookie() {
     if (typeof $request !== `undefined`) {
         GetCookie();
     } else {
+        const apitokens = $prefs.valueForKey("nfsq");
+        const nfsqplayload = $prefs.valueForKey("nfsqplayload");
+        if (!apitokens) {
+            $notify("错误", "", "没有配置 nfsq 环境变量");
+            $done();
+        }
+        if (!nfsqplayload) {
+            $notify("错误", "", "没有配置 nfsqplayload 环境变量");
+            $done();
+        }
+
+        const apitokenList = apitokens.split("#");
+        const playload = JSON.parse(nfsqplayload);
+
         for (const apitoken of apitokenList) {
-            await processAccount(apitoken);
+            await processAccount(apitoken, playload);
         }
         $done();
     }
