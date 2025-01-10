@@ -105,7 +105,7 @@
             "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.conf, tag=农夫山泉获取token"
         },
         {
-            "config": "10 9 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/zgrb.js, tag=picc签到, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/zgrb.png, enabled=true",
+            "config": "10 9 * * * https://gist.githubusercontent.com/Sliverkiss/c2ddf6840d8a9afb45ee407326e7b86d/raw/zgrb.js, tag=picc签到, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/zgrb.png, enabled=true",
             "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/zgrb.conf, tag=picc获取token"
         }
     ]
