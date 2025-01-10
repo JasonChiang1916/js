@@ -235,11 +235,11 @@ function GetCookie() {
         const token = header['apitoken'];
         const body = $response.body;
         if (token) {
-            $.setdata(token, 'nfsq');
+            $setdata(token, 'nfsq');
             $notify("🍀 获取nfsq成功", "", token);
         }
         if (body) {
-            $.setdata(body, 'nfsqplayload');
+            $setdata(body, 'nfsqplayload');
             $notify("🍀 获取nfsqplayload成功", "", body);
         }
     } catch (e) {
