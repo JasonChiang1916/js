@@ -1003,7 +1003,8 @@
                 "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png"
             ],
             "keys": [
-                "nfsq"
+                "nfsq",
+                "nfsqplayload",
             ],
             "settings": [
                 {
@@ -1013,6 +1014,14 @@
                     "type": "textarea",
                     "autoGrow": true,
                     "desc": "多个token用#分割"
+                },
+                {
+                    "id": "nfsqplayload",
+                    "name": "农夫山泉生肖水playload",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": ""
                 }
             ]
         }
