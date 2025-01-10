@@ -1,10 +1,3 @@
-/**
- * 中国人保 - QuantumultX 任务脚本
- * 脚本作者: 莫老师
- * 版本: 2.1
- * cron: 5 1 * * *
- */
-
 const zgrbck = $prefs.valueForKey("zgrb_data");
 
 const url = "zgrb.epicc.com.cn";
@@ -17,7 +10,7 @@ if (!zgrbck) {
 }
 
 const accounts = JSON.parse(zgrbck);
-const tasks = [];
+
 
 (async () => {
     for (let i = 0; i < accounts.length; i++) {
@@ -66,7 +59,9 @@ function fetchRequest(method, url, headers, params, body) {
         headers: headers,
         body: body ? JSON.stringify(body) : undefined
     };
+    console.log(`请求发起: ${method} ${url + query}`);
     return $task.fetch(options).then(response => {
+        console.log(`响应状态码: ${response.statusCode}`);
         try {
             return JSON.parse(response.body);
         } catch (error) {
@@ -78,6 +73,7 @@ function fetchRequest(method, url, headers, params, body) {
         return null;
     });
 }
+
 
 async function login(thirdPartyId, deviceId) {
     const body = {
@@ -150,3 +146,4 @@ function generateUUID() {
         return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
     });
 }
+
