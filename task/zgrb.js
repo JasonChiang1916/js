@@ -76,6 +76,8 @@ function fetchRequest(method, url, headers, params, body) {
 
 
 async function login(thirdPartyId, deviceId) {
+    const url = `https://${url}/G-BASE/a/user/login/thirdPartyLogin/v1`;
+    const headers = { "Content-Type": "application/json; charset=UTF-8" };
     const body = {
         body: { signInType: "0", thirdPartyId },
         head: {
@@ -89,10 +91,17 @@ async function login(thirdPartyId, deviceId) {
         },
         uuid: generateUUID()
     };
-    const headers = { "Content-Type": "application/json; charset=UTF-8" };
-    const result = await fetchRequest("POST", `https://${url}/G-BASE/a/user/login/thirdPartyLogin/v1`, headers, null, body);
-    return result ? result.head.accessToken : null;
+    const response = await fetchRequest("POST", url, headers, null, body);
+    
+    if (response && response.head && response.head.accessToken) {
+        console.log("登录成功，获取到token：", response.head.accessToken);
+        return response.head.accessToken;
+    } else {
+        console.log("登录失败，未获取到token");
+        return null;
+    }
 }
+
 
 async function signIn(token) {
     const headers = { "x-app-auth-type": "APP", "Content-Type": "application/json;charset=UTF-8", "x-app-auth-token": token };
