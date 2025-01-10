@@ -58,97 +58,91 @@ const tasks = [];
     $done();
 })();
 
-function login(thirdPartyId, deviceId) {
-    return new Promise(resolve => {
-        const body = {
-            body: { signInType: "0", thirdPartyId },
-            head: {
-                accessToken: "",
-                adCode: "350100",
-                appInfo: { appBuild: "285", appVersion: "6.23.12" },
-                deviceInfo: { deviceId, deviceModel: "23049RAD8C", osType: "android", osVersion: "13", romType: "2", romVersion: "0" },
-                tags: { tags: [], tagsLogin: [] },
-                token: "",
-                userId: ""
-            },
-            uuid: generateUUID()
-        };
-        const options = {
-            url: `https://${url}/G-BASE/a/user/login/thirdPartyLogin/v1`,
-            headers: { "Content-Type": "application/json; charset=UTF-8" },
-            body: JSON.stringify(body)
-        };
-        $httpClient.post(options, (err, resp, data) => {
-            if (err) {
-                console.log(`登录失败: ${err}`);
-                resolve(null);
-                return;
-            }
-            const ck = resp.headers["Authorization"];
-            resolve(ck);
-        });
+function fetchRequest(method, url, headers, params, body) {
+    let query = params ? '?' + new URLSearchParams(params).toString() : '';
+    const options = {
+        url: url + query,
+        method: method,
+        headers: headers,
+        body: body ? JSON.stringify(body) : undefined
+    };
+    return $task.fetch(options).then(response => {
+        try {
+            return JSON.parse(response.body);
+        } catch (error) {
+            console.log("JSON解析错误：", error);
+            return null;
+        }
+    }, reason => {
+        console.log("请求错误：", reason.error);
+        return null;
     });
 }
 
-function signIn(token) {
-    return new Promise(resolve => {
-        const options = {
-            url: `https://${url2}/dop/scoremall/coupon/ut/signIn`,
-            headers: { "x-app-auth-type": "APP", "Content-Type": "application/json;charset=UTF-8", "x-app-auth-token": token },
-            body: "{}"
-        };
-        $httpClient.post(options, (err, resp, data) => {
-            if (err) console.log(`签到失败: ${err}`);
-            resolve();
-        });
-    });
+async function login(thirdPartyId, deviceId) {
+    const body = {
+        body: { signInType: "0", thirdPartyId },
+        head: {
+            accessToken: "",
+            adCode: "350100",
+            appInfo: { appBuild: "285", appVersion: "6.23.12" },
+            deviceInfo: { deviceId, deviceModel: "23049RAD8C", osType: "android", osVersion: "13", romType: "2", romVersion: "0" },
+            tags: { tags: [], tagsLogin: [] },
+            token: "",
+            userId: ""
+        },
+        uuid: generateUUID()
+    };
+    const headers = { "Content-Type": "application/json; charset=UTF-8" };
+    const result = await fetchRequest("POST", `https://${url}/G-BASE/a/user/login/thirdPartyLogin/v1`, headers, null, body);
+    return result ? result.head.accessToken : null;
 }
 
-function completeTasks(token) {
-    return new Promise(resolve => {
-        const options = {
-            url: `https://${url2}/dop/scoremall/coupon/ut/task/list`,
-            headers: { "x-app-auth-type": "APP", "Content-Type": "application/json;charset=UTF-8", "x-app-score-platform": "picc-app", "x-app-score-channel": "picc-app001", "x-app-auth-token": token },
-            body: JSON.stringify({ type: 2, ver: "gNMJgr8lU5d8FeDKCaOiUoLFMJPYHw71bPvzr3MQOqncg+B546XRn2jpAgh0oj7RLYNl6Q1q+khuQxYsPDnUEMOHVkWH+z4xv/eVeW0+4Ar1UIGSNBvIT6nAx9TQ5MKeaIlcAx0vasj7xUgXijNoR2/laSI2sPN1W24oL7Oz6WezdfsdmU+dYF39X1bxUCKlYcUKTD7gdAfG7T6hq+3P2eFKQxE/fjalfAtYO9Iw6wpWIexamCu6yagIvsMx90Rn7nShEa+BE6ulNWlYj4YrjyHh1DS6KKm9rJ0VGRmtadHLW5WZdTJKmU3WEvjm0/h+3NCFAxf0u4hFRQQcTQs2+A==", localizedModel: "", platform: "" })
-        };
-        $httpClient.post(options, (err, resp, data) => {
-            if (err) console.log(`获取任务失败: ${err}`);
-            resolve();
-        });
-    });
+async function signIn(token) {
+    const headers = { "x-app-auth-type": "APP", "Content-Type": "application/json;charset=UTF-8", "x-app-auth-token": token };
+    await fetchRequest("POST", `https://${url2}/dop/scoremall/coupon/ut/signIn`, headers, null, {});
 }
 
-function drawBlindBox(token) {
-    return new Promise(resolve => {
-        const options = {
-            url: `https://${url2}/dop/scoremall/coupon/blindBox/draw`,
-            headers: { "x-app-auth-type": "APP", "Content-Type": "application/json;charset=UTF-8", "x-app-score-platform": "picc-app", "x-app-score-channel": "picc-app001", "x-app-auth-token": token },
-            body: "{}"
-        };
-        $httpClient.post(options, (err, resp, data) => {
-            if (err) console.log(`盲盒抽奖失败: ${err}`);
-            const result = JSON.parse(data).result;
-            resolve(result ? result.blindBoxGoodsVO.productName : null);
-        });
-    });
+async function completeTasks(token) {
+    const headers = {
+        "x-app-auth-type": "APP",
+        "Content-Type": "application/json;charset=UTF-8",
+        "x-app-score-platform": "picc-app",
+        "x-app-score-channel": "picc-app001",
+        "x-app-auth-token": token
+    };
+    const body = {
+        type: 2,
+        ver: "gNMJgr8lU5d8FeDKCaOiUoLFMJPYHw71bPvzr3MQOqncg+B546XRn2jpAgh0oj7RLYNl6Q1q+khuQxYsPDnUEMOHVkWH+z4xv/eVeW0+4Ar1UIGSNBvIT6nAx9TQ5MKeaIlcAx0vasj7xUgXijNoR2/laSI2sPN1W24oL7Oz6WezdfsdmU+dYF39X1bxUCKlYcUKTD7gdAfG7T6hq+3P2eFKQxE/fjalfAtYO9Iw6wpWIexamCu6yagIvsMx90Rn7nShEa+BE6ulNWlYj4YrjyHh1DS6KKm9rJ0VGRmtadHLW5WZdTJKmU3WEvjm0/h+3NCFAxf0u4hFRQQcTQs2+A==",
+        localizedModel: "",
+        platform: ""
+    };
+    await fetchRequest("POST", `https://${url2}/dop/scoremall/coupon/ut/task/list`, headers, null, body);
 }
 
-function getScore(token) {
-    return new Promise(resolve => {
-        const options = {
-            url: `https://${url2}/dop/scoremall/score/internal/scoreAccount/queryMyScoreAccount`,
-            headers: { "x-app-auth-type": "APP", "Content-Type": "application/json;charset=UTF-8", "x-app-score-platform": "picc-app", "x-app-score-channel": "picc-app001", "x-app-auth-token": token },
-            body: "{}"
-        };
-        $httpClient.post(options, (err, resp, data) => {
-            if (err) console.log(`查询积分失败: ${err}`);
-            const result = JSON.parse(data).result;
-            resolve(result ? result.totalScore : 0);
-        });
-    });
+async function drawBlindBox(token) {
+    const headers = {
+        "x-app-auth-type": "APP",
+        "Content-Type": "application/json;charset=UTF-8",
+        "x-app-score-platform": "picc-app",
+        "x-app-score-channel": "picc-app001",
+        "x-app-auth-token": token
+    };
+    const result = await fetchRequest("POST", `https://${url2}/dop/scoremall/coupon/blindBox/draw`, headers, null, {});
+    return result ? result.result.blindBoxGoodsVO.productName : null;
 }
 
-
+async function getScore(token) {
+    const headers = {
+        "x-app-auth-type": "APP",
+        "Content-Type": "application/json;charset=UTF-8",
+        "x-app-score-platform": "picc-app",
+        "x-app-score-channel": "picc-app001",
+        "x-app-auth-token": token
+    };
+    const result = await fetchRequest("POST", `https://${url2}/dop/scoremall/score/internal/scoreAccount/queryMyScoreAccount`, headers, null, {});
+    return result ? result.result.totalScore : 0;
+}
 
 function generateUUID() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
