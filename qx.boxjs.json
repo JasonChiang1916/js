@@ -1024,6 +1024,37 @@
                     "desc": ""
                 }
             ]
+        },
+        {
+            "id": "sliverkiss_zgrb",
+            "name": "中国人保",
+            "author": "@Sliverkiss",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/zgrb.png",
+                "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/zgrb.png"
+            ],
+            "keys": [
+                "zgrb_ecard",
+                "zgrb_data"
+            ],
+            "settings": [
+                {
+                    "id": "zgrb_ecard",
+                    "name": "开启自动兑换e卡",
+                    "val": false,
+                    "type": "boolean",
+                    "desc": "默认关闭"
+                },
+                {
+                    "id": "zgrb_data",
+                    "name": "会员Cookie数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "会员Cookie数据"
+                }
+            ]
         }
     ]
 }
