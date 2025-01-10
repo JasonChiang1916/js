@@ -99,6 +99,10 @@
         },
         {
             "config": "11 6,12,18,0 * * * https://gist.githubusercontent.com/Sliverkiss/8ab75614fe77cee3cc388b15de70176b/raw/picc.js, tag=picc 农场, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/picc.png, enabled=true"
+        },
+        {
+            "config": "30 9 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.js, tag=农夫山泉生肖水, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true",
+            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.conf, tag=农夫山泉获取token"
         }
     ]
 }
