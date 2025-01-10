@@ -44,7 +44,6 @@ if (!nfsqplayload) {
 
 const apitokenList = apitokens.split("#");
 const playload = JSON.parse(nfsqplayload);
-const code = playload.code;
 
 function fetchRequest(method, url, headers, params, body) {
     let query = params ? '?' + new URLSearchParams(params).toString() : '';
@@ -71,7 +70,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function randomSleep(min = 1000, max = 3000) {
+async function randomSleep(min = 1000, max = 5000) {
     const delay = Math.floor(Math.random() * (max - min + 1)) + min;
     await sleep(delay);
 }
@@ -153,7 +152,7 @@ async function processAccount(apitoken) {
     console.log(`账号 nick_name:${nickName || userNo}`);
 
     const everyDataCounted = await todayCount(apitoken);
-    console.log("每日赠送抽奖", `[${everyDataCounted}/3]`);
+    console.log("每日赠送抽奖", `[${everyDataCounted}次]`);
 
     let prizeMessages = [];
     if (everyDataCounted < 3) {
@@ -182,16 +181,28 @@ async function processAccount(apitoken) {
 
         if (taskStatus === 1) {
             console.log(`${taskName} 已完成,跳过`);
+            marketingLottery(apitoken).then(prizeMessage => {
+                if (prizeMessage) {
+                    prizeMessages.push(prizeMessage);
+                }
+            });
+            await randomSleep();
         } else {
             console.log(`开始 ${taskName} [${completeCount}/${allowCompleteCount}]`);
             for (let i = 0; i < allowCompleteCount - completeCount; i++) {
                 await doTask(taskId, apitoken);
                 await randomSleep();
+                marketingLottery(apitoken).then(prizeMessage => {
+                    if (prizeMessage) {
+                        prizeMessages.push(prizeMessage);
+                    }
+                });
+                await randomSleep();
             }
         }
     }
 
-    console.log("时来运转游戏");
+    console.log("执行时来运转游戏");
     for (let i = 0; i < 3; i++) {
         const lotteryMes = await lottery(apitoken);
         if (lotteryMes && lotteryMes.success === false) {
@@ -215,7 +226,7 @@ async function processAccount(apitoken) {
         }
     }
     console.log(goodsMsg);
-    
+
     // 合并中奖信息
     const finalPrizeMessage = prizeMessages.length > 0 ? prizeMessages.join("\n") : "未中奖";
     $notify("农夫山泉抽奖结果", `账号：${nickName || userNo}`, `${goodsMsg}\n中奖详情：\n${finalPrizeMessage}`);
