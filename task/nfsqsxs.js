@@ -9,7 +9,6 @@
 30 9 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.js, tag=农夫山泉生肖水, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true
 
 ******************************************/
-
 const API_BASE_URL = "https://gateway.jmhd8.com";
 const USER_INFO_URL = `${API_BASE_URL}/geement.usercenter/api/v1/user/information`;
 const TASK_LIST_URL = `${API_BASE_URL}/geement.marketingplay/api/v1/task`;
@@ -230,22 +229,42 @@ async function processAccount(apitoken) {
 // 获取用户数据
 function GetCookie() {
     try {
-        console.log($response.body);
-        const header = Object.fromEntries(Object.entries($request.headers).map(([k, v]) => [k.toLowerCase(), v]));
-        const token = header['apitoken'];
-        const body = $response.body;
+        const headers = $request.headers;
+        const body = $request.body;
+
+        // 提取请求头中的 token
+        const token = headers['apitoken'];
+
+        // 解析请求体中的 key-value
+        let keyValuePairs = {};
+        if (body) {
+            try {
+                keyValuePairs = JSON.parse(body);
+            } catch (e) {
+                console.log('请求体不是 JSON 格式');
+            }
+        }
+
+        // 持久化存储 token
         if (token) {
-            $setdata(token, 'nfsq');
+            $prefs.setValueForKey(token, 'nfsq');
+            console.log(`nfsq 已保存: ${token}`);
             $notify("🍀 获取nfsq成功", "", token);
         }
-        if (body) {
-            $setdata(body, 'nfsqplayload');
-            $notify("🍀 获取nfsqplayload成功", "", body);
+
+        // 持久化存储 nfsqplayload 对
+        if (Object.keys(keyValuePairs).length > 0) {
+            $prefs.setValueForKey(JSON.stringify(keyValuePairs), 'nfsqplayload');
+            console.log(`nfsqplayload已保存: ${JSON.stringify(keyValuePairs)}`);
+            $notify("🍀 获取nfsqplayload成功", "", JSON.stringify(keyValuePairs));
         }
+        $done();
     } catch (e) {
         $notify("⛔️ 获取Cookie失败", "", `错误: ${e.message}`);
+        $done();
     }
 }
+
 
 // 脚本执行入口
 !(async () => {
