@@ -14,7 +14,9 @@ const accounts = JSON.parse(zgrbck);
     for (let i = 0; i < accounts.length; i++) {
         const thirdPartyId = accounts[i].thirdPartyId;
         const deviceId = accounts[i].deviceId;
-        const token = await login(thirdPartyId, deviceId);
+        const accessToken = accounts[i].token;
+        console.log(`${accessToken} 开始执行`);
+        const token = await login(thirdPartyId, deviceId, accessToken);
         if (!token) {
             console.log(`账号${i + 1} 登录失败`);
             $notify("中国人保", `账号${i + 1} 登录失败，请检查`, "");
@@ -69,11 +71,11 @@ function fetchRequest(method, url, headers, params, body) {
     });
 }
 
-async function login(thirdPartyId, deviceId) {
+async function login(thirdPartyId, deviceId, accessToken) {
     const body = {
         body: { signInType: "0", thirdPartyId },
         head: {
-            accessToken: "",
+            accessToken: accessToken,
             adCode: "350100",
             appInfo: { appBuild: "285", appVersion: "6.23.12" },
             deviceInfo: { deviceId, deviceModel: "23049RAD8C", osType: "android", osVersion: "13", romType: "2", romVersion: "0" },
@@ -137,4 +139,5 @@ function generateUUID() {
         return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
     });
 }
+
 
