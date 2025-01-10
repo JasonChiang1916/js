@@ -188,7 +188,7 @@ async function processAccount(apitoken, playload) {
             console.log(lotteryMes.msg);
             break;
         } else if (lotteryMes && lotteryMes.data) {
-            console.log(lotteryMes.data);
+            console.log(JSON.stringify(lotteryMes.data));
             prizeMessages.push(`🎁 ${lotteryMes.data}`);
         } else {
             console.log("抽奖请求失败");
