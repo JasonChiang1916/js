@@ -181,12 +181,6 @@ async function processAccount(apitoken) {
 
         if (taskStatus === 1) {
             console.log(`${taskName} 已完成,跳过`);
-            marketingLottery(apitoken).then(prizeMessage => {
-                if (prizeMessage) {
-                    prizeMessages.push(prizeMessage);
-                }
-            });
-            await randomSleep();
         } else {
             console.log(`开始 ${taskName} [${completeCount}/${allowCompleteCount}]`);
             for (let i = 0; i < allowCompleteCount - completeCount; i++) {
@@ -233,9 +227,35 @@ async function processAccount(apitoken) {
 }
 
 
-(async () => {
-    for (const apitoken of apitokenList) {
-        await processAccount(apitoken);
+// 获取用户数据
+function GetCookie() {
+    try {
+        console.log($response.body);
+        const header = Object.fromEntries(Object.entries($request.headers).map(([k, v]) => [k.toLowerCase(), v]));
+        const token = header['apitoken'];
+        const body = $response.body;
+        if (token) {
+            $.setdata(token, 'nfsq');
+            $notify("🍀 获取nfsq成功", "", token);
+        }
+        if (body) {
+            $.setdata(body, 'nfsqplayload');
+            $notify("🍀 获取nfsqplayload成功", "", body);
+        }
+    } catch (e) {
+        $notify("⛔️ 获取Cookie失败", "", `错误: ${e.message}`);
     }
-    $done();
-})();
+}
+
+// 脚本执行入口
+!(async () => {
+    if (typeof $request !== `undefined`) {
+        GetCookie();
+    } else {
+        for (const apitoken of apitokenList) {
+            await processAccount(apitoken);
+        }
+        $done();
+    }
+})()
+    .catch((e) => $.messages.push(e.message || e) && $.logErr(e))
