@@ -1135,6 +1135,37 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/Color/testflight.png",
         "https://raw.githubusercontent.com/Orz-3/mini/master/Color/testflight.png"
       ]
-    }
+    },
+    {
+            "id": "RQSP",
+            "name": "日清食品体验馆",
+            "author": "@1916",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/sliverkiss/QuantumultX/main/icon/rqsp.png",
+                "https://raw.githubusercontent.com/sliverkiss/QuantumultX/main/icon/rqsp.png"
+            ],
+            "keys": [
+                "RQSP",
+                "RQSP_Acc"
+            ],
+            "settings": [
+                {
+                    "id": "RQSP",
+                    "name": "日清食品Token",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true
+                },
+                {
+                    "id": "RQSP_Acc",
+                    "name": "日清食品会员日兑换账号序号",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "0表示兑换第一个账号，以此类推"
+                }
+            ]
+        }
     ]
 }
