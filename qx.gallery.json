@@ -115,6 +115,9 @@
         {
             "config": "9 5,15 * * * https://raw.githubusercontent.com/xzxxn777/Surge/main/Script/RQSP/RQSP.js, tag=日清食品体验馆, img-url=https://raw.githubusercontent.com/sliverkiss/QuantumultX/main/icon/rqsp.png, enabled=true",
             "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/rqsp.conf, tag=日清食品体验馆获取token"
+        },
+        {
+            "config": "58 59 17 25-27 * * https://raw.githubusercontent.com/xzxxn777/Surge/refs/heads/main/Script/RQSP/RQSP_Exchange.js, tag=日清食品会员日兑换, img-url=https://raw.githubusercontent.com/sliverkiss/QuantumultX/main/icon/rqsp.png, enabled=true"
         }
     ]
 }
