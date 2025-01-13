@@ -111,6 +111,10 @@
         {
             "config": "30 10,20 * * * https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/TestFlight.js, tag=TestFlight自动加入, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/testflight.png, enabled=true",
             "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/TestFlight.conf, tag=获取自动加入TestFlight需要的各项参数"
+        },
+        {
+            "config": "9 5,15 * * * https://raw.githubusercontent.com/xzxxn777/Surge/main/Script/RQSP/RQSP.js, tag=日清食品体验馆, img-url=https://raw.githubusercontent.com/sliverkiss/QuantumultX/main/icon/rqsp.png, enabled=true",
+            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/rqsp.conf, tag=日清食品体验馆获取token"
         }
     ]
 }
