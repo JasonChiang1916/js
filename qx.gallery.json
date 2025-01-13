@@ -102,11 +102,15 @@
         },
         {
             "config": "30 9 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.js, tag=农夫山泉生肖水, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true",
-            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/nfsqsxs.conf, tag=农夫山泉获取token"
+            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/nfsqsxs.conf, tag=农夫山泉获取token"
         },
         {
             "config": "10 9 * * * https://gist.githubusercontent.com/Sliverkiss/c2ddf6840d8a9afb45ee407326e7b86d/raw/zgrb.js, tag=picc签到, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/zgrb.png, enabled=true",
-            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/zgrb.conf, tag=picc获取token"
+            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/zgrb.conf, tag=picc获取token"
+        },
+        {
+            "config": "30 10,20 * * * https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/TestFlight.js, tag=TestFlight自动加入, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/testflight.png, enabled=true",
+            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/TestFlight.conf, tag=获取自动加入TestFlight需要的各项参数"
         }
     ]
 }
