@@ -97,7 +97,19 @@ async function lottery(apitoken, playload) {
     playload['code'] = "SCENE-24121018362724";
     const headers = { ...HEADERS, 'apitoken': apitoken, 'Content-Type': "application/json" };
     const response = await fetchRequest("POST", LOTTERY_URL, headers, null, playload);
-    return response;
+    if (response && response.code === 500) {
+        console.log(response.msg);
+        return null;
+    } else if (response && response.data && response.data.prizedto) {
+        const prizeInfo = response.data.prizedto;
+        const prizeName = prizeInfo.goods[0].goods_name || "未知奖品";
+        const prizeLevel = prizeInfo.prize_level || "未知等级";
+        console.log(`🎉 恭喜中奖：${prizeName}，等级：${prizeLevel}`);
+        return `🎁 ${prizeName}（等级：${prizeLevel}）`;
+    } else {
+        console.log("未获取到有效的中奖信息");
+        return null;
+    }
 }
 
 async function marketingLottery(apitoken, playload,type) {
@@ -173,18 +185,14 @@ async function processAccount(apitoken, playload) {
         }
     }
 
-    
     console.log("执行时来运转游戏");
     for (let i = 0; i < 100; i++) {
         const lotteryMes = await lottery(apitoken, playload);
-        if (lotteryMes && lotteryMes.success === false) {
-            console.log(lotteryMes.msg);
-            break;
-        } else if (lotteryMes && lotteryMes.data) {
-            console.log(JSON.stringify(lotteryMes.data));
-            prizeMessages.push(`🎁 ${lotteryMes.data}`);
+        if (lotteryMes) {
+            prizeMessages.push(lotteryMes);
         } else {
-            console.log("时来运转游戏抽奖请求失败");
+            console.log("时来运转游戏抽奖已无次数");
+            break;
         }
         await randomSleep();
     }
@@ -213,7 +221,6 @@ async function processAccount(apitoken, playload) {
         await randomSleep();
     }
 
-
     console.log("======查询奖品======");
     const goodsList = await goodsSimple(apitoken);
     let goodsMsg = "奖品清单：\n";
@@ -226,7 +233,7 @@ async function processAccount(apitoken, playload) {
  
     // 合并中奖信息
     const finalPrizeMessage = prizeMessages.length > 0 ? prizeMessages.join("\n") : "未中奖";
-    $notify("农夫山泉抽奖结果", `账号：${nickName || userNo}`, `中奖详情：\n${JSON.stringify(finalPrizeMessage)}`);
+    $notify("农夫山泉抽奖结果", `账号：${nickName || userNo}`, `中奖详情：\n${finalPrizeMessage}`);
 }
 
 
