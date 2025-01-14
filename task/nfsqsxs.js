@@ -142,19 +142,11 @@ async function processAccount(apitoken, playload) {
 
     console.log(`账号 nick_name:${nickName || userNo}`);
 
-    const everyDataCounted = await todayCount(apitoken);
-    console.log("每日赠送抽奖", `[${everyDataCounted}次]`);
+    // const everyDataCounted = await todayCount(apitoken);
+    // console.log("每日赠送抽奖", `[${everyDataCounted}次]`);
 
     let prizeMessages = [];
-    if (everyDataCounted < 3) {
-        for (let i = 0; i < 3 - everyDataCounted; i++) {
-            const prizeMessage = await marketingLottery(apitoken, playload);
-            if (prizeMessage) {
-                prizeMessages.push(prizeMessage);
-            }
-            await randomSleep();
-        }
-    }
+
 
     const taskList = await getTaskList(apitoken);
     if (taskList.length === 0) {
@@ -177,18 +169,12 @@ async function processAccount(apitoken, playload) {
             for (let i = 0; i < allowCompleteCount - completeCount; i++) {
                 await doTask(taskId, apitoken);
                 await randomSleep();
-                marketingLottery(apitoken, playload).then(prizeMessage => {
-                    if (prizeMessage) {
-                        prizeMessages.push(prizeMessage);
-                    }
-                });
-                await randomSleep();
             }
         }
     }
 
     console.log("执行时来运转游戏");
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 100; i++) {
         const lotteryMes = await lottery(apitoken, playload);
         if (lotteryMes && lotteryMes.success === false) {
             console.log(lotteryMes.msg);
@@ -201,6 +187,19 @@ async function processAccount(apitoken, playload) {
         }
         await randomSleep();
     }
+
+    console.log("======执行抽奖======");
+    for (let i = 0; i < 100; i++) {
+        const prizeMessage = await marketingLottery(apitoken, playload);
+        if (prizeMessage) {
+            prizeMessages.push(prizeMessage);
+        } else {
+            console.log("抽奖已无次数");
+            break;
+        }
+        await randomSleep();
+    }
+
 
     console.log("======查询奖品======");
     const goodsList = await goodsSimple(apitoken);
