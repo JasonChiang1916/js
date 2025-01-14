@@ -225,7 +225,7 @@ async function processAccount(apitoken, playload) {
     const goodsList = await goodsSimple(apitoken);
     let goodsMsg = "奖品清单：\n";
     for (const good of goodsList) {
-        if (good.win_goods_name) {
+        if (good.win_goods_name && good.win_goods_name !== "潘展乐祝福奖") {
             goodsMsg += `🎁 ${good.win_goods_name}\n`;
         }
     }
