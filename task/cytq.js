@@ -201,6 +201,7 @@ function realtimeWeather() {
     const keypoint = data.forecast_keypoint;
 
     const hourly = data.hourly;
+    const daily = data.daily;
 
     let hourlySkycon = "[未来3小时]\n";
     for (let i = 0; i < 3; i++) {
@@ -208,24 +209,31 @@ function realtimeWeather() {
         const dt = new Date(skycon.datetime);
         const now = dt.getHours() + 1;
         dt.setHours(dt.getHours() + 1);
-        hourlySkycon +=
-            `${now}-${dt.getHours() + 1}时 ${mapSkycon(skycon.value)[0]}` +
-            (i == 2 ? "" : "\n");
+        hourlySkycon += `${now}-${dt.getHours() + 1}时 ${mapSkycon(skycon.value)[0]}` + (i == 2 ? "" : "\n");
     }
+
+    let daySkycon = "[最近3天]\n";
+    for (let i = 0; i < 3; i++) {
+        const dailyskycon = daily.skycon[i];
+        const dt = new Date(dailyskycon.date);
+        daySkycon += `${dt} ${mapSkycon(dailyskycon.value)[0]}` + (i == 2 ? "" : "\n");
+    }
+
 
     $.notify(
         `[彩云天气] ${address.city} ${address.district} ${address.street}`,
         `${mapSkycon(realtime.skycon)[0]} ${realtime.temperature} ℃  🌤 空气质量 ${realtime.air_quality.description.chn
         }`,
         `🔱 ${keypoint}
-🌡 体感${realtime.life_index.comfort.desc} ${realtime.apparent_temperature
-        } ℃  💧 湿度 ${(realtime.humidity * 100).toFixed(0)}%
-🌞 紫外线 ${realtime.life_index.ultraviolet.desc} 💨 ${mapWind(
-            realtime.wind.speed,
-            realtime.wind.direction
+        🌡 体感${realtime.life_index.comfort.desc} ${realtime.apparent_temperature} ℃  
+        💧 湿度 ${(realtime.humidity * 100).toFixed(0)}%
+        🌞 紫外线 ${realtime.life_index.ultraviolet.desc} 
+        💨 ${mapWind(realtime.wind.speed,realtime.wind.direction
         )}
 
-    ${hourlySkycon}
+        ${hourlySkycon}
+        
+        ${daySkycon}
 `,
         {
             "media-url": `${mapSkycon(realtime.skycon)[1]}`,
