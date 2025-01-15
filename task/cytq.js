@@ -1,7 +1,7 @@
 /**
 彩云天气 v0.2 alpha
-@author: 原作者Peng-YM，1916修复更新
- *
+@author: 原作者Peng-YM，因为彩云天气免费接口有变动及不提供预警功能，1916修复更新
+*
 功能：
 √ 自动定位
 √ 异常天气预警
@@ -124,10 +124,7 @@ async function scheduler() {
         }月${now.getDate()}日${now.getHours()}时${now.getMinutes()}分`
     );
     await query();
-    weatherAlert();
     realtimeWeather();
-    // hourlyForcast();
-    // dailyForcast();
 }
 
 async function query() {
@@ -144,7 +141,7 @@ async function query() {
         );
     }
     // query API
-    const url = `https://api.caiyunapp.com/v2.6/${$.read("token").caiyun}/${$.read("location").longitude},${$.read("location").latitude}/weather?lang=zh_CN&dailystart=0&hourlysteps=384&dailysteps=16&alert=true`;
+    const url = `https://api.caiyunapp.com/v2.6/${$.read("token").caiyun}/${$.read("location").longitude},${$.read("location").latitude}/weather?lang=zh_CN&dailystart=0&hourlysteps=48&dailysteps=3`;
 
     $.log("Query weather...");
 
@@ -196,45 +193,10 @@ async function query() {
     $.address = address;
 }
 
-function weatherAlert() {
-    const data = $.weather.result.alert;
-    const address = $.address;
-    const alerted = $.read("alerted") || [];
-
-    if (data.status === "ok") {
-        data.content.forEach((alert) => {
-            if (alerted.indexOf(alert.alertId) === -1) {
-                $.notify(
-                    `[彩云天气] ${address.city} ${address.district} ${address.street}`,
-                    alert.title,
-                    alert.description
-                );
-                alerted.push(alert.alertId);
-                if (alerted.length > 10) {
-                    alerted.shift();
-                }
-                $.write(alerted, "alerted");
-            }
-        });
-    }
-}
 
 function realtimeWeather() {
     const data = $.weather.result;
     const address = $.address;
-
-    const alert = data.alert;
-    const alertInfo =
-        alert.content.length == 0
-            ? ""
-            : alert.content.reduce((acc, curr) => {
-                if (curr.status === "预警中") {
-                    return acc + "\n" + mapAlertCode(curr.code) + "预警";
-                } else {
-                    return acc;
-                }
-            }, "[预警]") + "\n\n";
-
     const realtime = data.realtime;
     const keypoint = data.forecast_keypoint;
 
@@ -263,7 +225,7 @@ function realtimeWeather() {
             realtime.wind.direction
         )}
 
-${alertInfo}${hourlySkycon}
+    ${hourlySkycon}
 `,
         {
             "media-url": `${mapSkycon(realtime.skycon)[1]}`,
@@ -271,7 +233,6 @@ ${alertInfo}${hourlySkycon}
     );
 }
 
-function dailyForcast() { }
 
 /************************** 天气对照表 *********************************/
 
