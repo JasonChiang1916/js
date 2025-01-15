@@ -216,25 +216,27 @@ function realtimeWeather() {
     for (let i = 0; i < 3; i++) {
         const dailyskycon = daily.skycon[i];
         const dt = new Date(dailyskycon.date);
-        daySkycon += `${dt} ${mapSkycon(dailyskycon.value)[0]}` + (i == 2 ? "" : "\n");
+        const year = dt.getFullYear();
+        const month = String(dt.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1并补零
+        const day = String(dt.getDate()).padStart(2, '0'); // 补零
+        const formattedDateString = `${year}-${month}-${day}`;
+        daySkycon += `${formattedDateString} ${mapSkycon(dailyskycon.value)[0]}` + (i == 2 ? "" : "\n");
     }
 
 
     $.notify(
-        `[彩云天气] ${address.city} ${address.district} ${address.street}`,
-        `${mapSkycon(realtime.skycon)[0]} ${realtime.temperature} ℃  🌤 空气质量 ${realtime.air_quality.description.chn
-        }`,
-        `🔱 ${keypoint}
-        🌡 体感${realtime.life_index.comfort.desc} ${realtime.apparent_temperature} ℃  
-        💧 湿度 ${(realtime.humidity * 100).toFixed(0)}%
-        🌞 紫外线 ${realtime.life_index.ultraviolet.desc} 
-        💨 ${mapWind(realtime.wind.speed,realtime.wind.direction
-        )}
-
-        ${hourlySkycon}
-        
-        ${daySkycon}
-`,
+        `彩云天气`, '',
+        `${address.city} ${address.district} ${address.street}` + '\n'
+            `${mapSkycon(realtime.skycon)[0]} ${realtime.temperature} ℃  🌤 空气质量 ${realtime.air_quality.description.chn}` + '\n'
+            `🔱 ${keypoint}+'\n'
+            🌡 体感${realtime.life_index.comfort.desc} ${realtime.apparent_temperature} ℃  +'\n'
+            💧 湿度 ${(realtime.humidity * 100).toFixed(0)}%+'\n'
+            🌞 紫外线 ${realtime.life_index.ultraviolet.desc} +'\n'
+            💨 ${mapWind(realtime.wind.speed, realtime.wind.direction + '\n'
+            )}
+            ${hourlySkycon}+'\n'
+            ${daySkycon}
+            `,
         {
             "media-url": `${mapSkycon(realtime.skycon)[1]}`,
         }
