@@ -223,7 +223,17 @@ function realtimeWeather() {
         daySkycon += `${formattedDateString} ${mapSkycon(dailyskycon.value)[0]}` + (i == 2 ? "" : "\n");
     }
 
-
+    console.log(
+        `${address.city} ${address.district} ${address.street}\n` +
+        `🌡 当前温度: ${realtime.temperature}℃ ${mapSkycon(realtime.skycon)[0]}\n` +
+        `💨 风速: ${mapWind(realtime.wind.speed, realtime.wind.direction)}\n` +
+        `💧 湿度: ${(realtime.humidity * 100).toFixed(0)}%\n` +
+        `🌞 紫外线: ${realtime.life_index.ultraviolet.desc}\n` +
+        `🔱 关键点: ${keypoint}\n` +
+        `🌀 体感温度: ${realtime.apparent_temperature}℃ (${realtime.life_index.comfort.desc})\n` +
+        `🌬 空气质量: ${realtime.air_quality.description.chn}\n` +
+        `${hourlySkycon}\n` +
+        `${daySkycon}`)
     $.notify(
         `🌤 彩云天气`, '',
         `${address.city} ${address.district} ${address.street}\n` +
