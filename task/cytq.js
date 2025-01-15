@@ -225,22 +225,22 @@ function realtimeWeather() {
 
 
     $.notify(
-        `彩云天气`, '',
-        `${address.city} ${address.district} ${address.street}` + '\n'
-            `${mapSkycon(realtime.skycon)[0]} ${realtime.temperature} ℃  🌤 空气质量 ${realtime.air_quality.description.chn}` + '\n'
-            `🔱 ${keypoint}+'\n'
-            🌡 体感${realtime.life_index.comfort.desc} ${realtime.apparent_temperature} ℃  +'\n'
-            💧 湿度 ${(realtime.humidity * 100).toFixed(0)}%+'\n'
-            🌞 紫外线 ${realtime.life_index.ultraviolet.desc} +'\n'
-            💨 ${mapWind(realtime.wind.speed, realtime.wind.direction + '\n'
-            )}
-            ${hourlySkycon}+'\n'
-            ${daySkycon}
-            `,
+        `🌤 彩云天气`, '',
+        `${address.city} ${address.district} ${address.street}\n` +
+        `🌡 当前温度: ${realtime.temperature}℃ ${mapSkycon(realtime.skycon)[0]}\n` +
+        `💨 风速: ${mapWind(realtime.wind.speed, realtime.wind.direction)}\n` +
+        `💧 湿度: ${(realtime.humidity * 100).toFixed(0)}%\n` +
+        `🌞 紫外线: ${realtime.life_index.ultraviolet.desc}\n` +
+        `🔱 关键点: ${keypoint}\n` +
+        `🌀 体感温度: ${realtime.apparent_temperature}℃ (${realtime.life_index.comfort.desc})\n` +
+        `🌬 空气质量: ${realtime.air_quality.description.chn}\n` +
+        `${hourlySkycon}\n` +
+        `${daySkycon}`,
         {
             "media-url": `${mapSkycon(realtime.skycon)[1]}`,
         }
     );
+
 }
 
 
