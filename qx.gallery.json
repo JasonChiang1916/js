@@ -124,8 +124,8 @@
             "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/cytq.conf, tag=彩云天气获取经纬度"
         },
         {
-            "config": "5 0,18 * * * https://raw.githubusercontent.com/xzxxn777/Surge/main/Script/YiLi/YiLi.js, tag=伊利-春节, img-url=https://github.com/JasonChiang1916/js/blob/main/icon/yili.png, enabled=true",
-            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/yili.conf, tag=伊利_获取token"
+            "config": "5 0,18 * * * https://raw.githubusercontent.com/xzxxn777/Surge/main/Script/YiLi/YiLi.js, tag=伊利-春节, img-url=https://github.com/JasonChiang1916/js/main/icon/yili.png, enabled=true",
+            "addons": "https://raw.githubusercontent.com/xzxxn777/Surge/main/Script/YiLi/YiLi.sgmodule, tag=伊利_获取token"
         }
     ]
 }
