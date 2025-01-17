@@ -1225,6 +1225,37 @@
         "https://raw.githubusercontent.com/Orz-3/task/master/caiyun.png"
       ],
       "script": "https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/caiyun.js"
-    }
+    },
+        {
+            "id": "yili",
+            "name": "伊利-春节",
+            "author": "@1916",
+            "repo": "",
+            "icons": [
+                "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/yiLi.png",
+                "https://raw.githubusercontent.com/id77/QuantumultX/master/icon/yiLi.png"
+            ],
+            "keys": [
+                "YiLi",
+                "YiLi_Open"
+            ],
+            "settings": [
+                {
+                    "id": "YiLi",
+                    "name": "伊利Token",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true
+                },
+                {
+                    "id": "YiLi_Open",
+                    "name": "翻牌",
+                    "val": null,
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": ""
+                }
+            ]
+        }
     ]
 }
