@@ -125,9 +125,6 @@
         },
         {
             "config": "5 0,18 * * * https://raw.githubusercontent.com/xzxxn777/Surge/main/Script/YiLi/YiLi.js, tag=伊利-春节, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/yiLi.png, enabled=true"
-        },
-        {
-            "config": "0 56 8 * * * https://gist.githubusercontent.com/Raphael689/baa8741701e186a500f9c61ce37459ff/raw/ysf.js, tag=云闪付签到, img-url=https://raw.githubusercontent.com/Raphael689/RW/master/iCons/ysf.png, enabled=true"
         }
     ]
 }
