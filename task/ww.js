@@ -17,16 +17,15 @@ hostname = www.hotkidclub.com
 ******************************************/
 let goodsMsg = "";
 
-function fetchRequest(method, url, headers, params = null, body = null) {
+function fetchRequest(method, url, headers, params, body) {
     let query = params ? '?' + new URLSearchParams(params).toString() : '';
     const options = {
         url: url + query,
         method: method,
         headers: headers,
-        body: body ? JSON.stringify(body) : undefined, // 如果 body 为空则忽略
+        body: body ? JSON.stringify(body) : undefined
     };
-
-    $task.fetch(options).then(response => {
+    return $task.fetch(options).then(response => {
         try {
             return JSON.parse(response.body);
         } catch (error) {
