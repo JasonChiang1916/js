@@ -612,7 +612,6 @@ async function Sign(cookie) {
         'Host': 'www.hotkidclub.com',
         'Connection': 'keep-alive',
         'Login-Status': 'HAS_SESS',
-        'content-type': 'application/json',
         'Has-Sess': 'TRUE',
         'Accept-Encoding': 'gzip,compress,br,deflate',
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.51(0x1800332e) NetType/4G Language/zh_CN',
@@ -622,19 +621,19 @@ async function Sign(cookie) {
     const params = {
         adid: 'hkc_mp-campaign_self-click-link-cV'
     };
+
     try {
-        const response = await fetchRequest('GET', url, headers, params);
-        const result = await response.json();
-        const code = result.Response.code;
+        const result = await fetchRequest('GET', url, headers, params); // 直接等待 fetchRequest 的结果
+        const code = result.Response.code; // 使用解析后的数据
         if (code === 10001) {
             console.log('每日签到：完成');
-            goodsMsg += `每日签到：每日签到：完成\n`;
+            goodsMsg += `每日签到：完成\n`;
         } else {
             console.log(`每日签到：${result.Response.sub_msg}`);
             goodsMsg += `每日签到：${result.Response.sub_msg}\n`;
         }
     } catch (error) {
-        console.error(error);
+        console.error("签到请求出错：", error);
     }
 }
 
