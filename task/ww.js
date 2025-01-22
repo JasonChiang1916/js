@@ -493,7 +493,7 @@ async function grabGameGetFragment(grade, token, taskName) {
     });
 
     try {
-        const response = await fetchRequest("POST", "https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", headers, null, json_data);
+        const response = await fetchRequest("POST", "https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", headers, {}, json_data);
         const result = await response.json();
         const code = result.Response.code;
         if (code === 10001) {
@@ -537,7 +537,7 @@ async function draw(cookie, jc) {
         { "drawType": 2, "acType": 1, "platform": "WEB", "channel": "WEIXINMP", "adid": "2025festival-hotkidclub-click-2025_festival-1j8" };
 
     try {
-        const response = await fetchRequest('POST', url, headers, null, data);
+        const response = await fetchRequest('POST', url, headers, {}, data);
         const result = await response.json();
         const code = result.Response.code;
         if (code === 10001) {
@@ -577,7 +577,7 @@ async function cpnSign(cookie) {
     };
 
     try {
-        const response = await fetchRequest('POST', url, headers, null, data)
+        const response = await fetchRequest('POST', url, headers, {}, data)
         const result = await response.json();
         const code = result.Response.code;
 
@@ -610,7 +610,7 @@ async function Sign(cookie) {
         adid: 'hkc_mp-campaign_self-click-link-cV'
     };
     try {
-        const response = await fetchRequest('GET', url, headers, params, null);
+        const response = await fetchRequest('GET', url, headers, params);
         const result = await response.json();
         const code = result.Response.code;
         if (code === 10001) {
@@ -641,7 +641,7 @@ async function dotask(cookie, taskName, type) {
         "Cookie": cookie
     };
     const data = { type };
-    const response = await fetchRequest('POST', url, headers, null, data);
+    const response = await fetchRequest('POST', url, headers, {}, data);
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：完成`);
         goodsMsg += `${taskName}：完成\n`;
@@ -678,7 +678,7 @@ async function getFragments(cookie, taskName, type) {
         headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
     });
     const data = { "getWay": type, "adid": "2025festival-campaign_self-click-link-1j8" };
-    const response = await fetchRequest('POST', url, headers, null, data);
+    const response = await fetchRequest('POST', url, headers, {}, data);
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：成功获取碎片`);
         goodsMsg += `${taskName}：成功获取碎片\n`;
@@ -743,7 +743,7 @@ async function run(cookie, jc) {
         "Cookie": cookie
     };
     const data = { platformType: 1 };
-    const response = await fetchRequest('POST', url, headers, null, data);
+    const response = await fetchRequest('POST', url, headers, {}, data);
     if (response && response.Response.code === 10001) {
         console.log('开始游戏集卡任务');
         goodsMsg += `开始游戏集卡任务\n`;
