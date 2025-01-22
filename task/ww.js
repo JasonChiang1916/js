@@ -434,10 +434,10 @@ async function run(cookie, jc) {
     //         }
     //     }
     //     await draw(cookie, jc);
-    } else {
-        console.log('ck异常');
-        goodsMsg += `ck异常\n`;
-    }
+    // } else {
+    //     console.log('ck异常');
+    //     goodsMsg += `ck异常\n`;
+    // }
 }
 
 async function dotask(cookie, taskName, type) {
