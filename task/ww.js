@@ -32,11 +32,9 @@ async function fetchRequest(method, url, headers, params, body) {
             return JSON.parse(response.body);
         } catch (error) {
             console.log("JSON解析错误：", error);
-            return null;
         }
     }, error => {
         console.log("请求错误：", reason.error);
-        return null;
     });
 }
 
