@@ -507,14 +507,13 @@ async function grabGameGetFragment(grade, token, taskName) {
 
     try {
         const response = await fetchRequest("POST", "https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", headers, null, json_data);
-        const result = await response.json();
-        const code = result.Response.code;
+        const code = response.Response.code;
         if (code === 10001) {
             console.log(`${taskName}：完成`);
             goodsMsg += `${taskName}：完成\n`;
         } else {
-            console.log(`${taskName}：${result.Response.sub_msg}`);
-            goodsMsg += `${taskName}：${result.Response.sub_msg}\n`;
+            console.log(`${taskName}：${response.Response.sub_msg}`);
+            goodsMsg += `${taskName}：${response.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error(error);
@@ -551,14 +550,13 @@ async function draw(cookie, jc) {
 
     try {
         const response = await fetchRequest('POST', url, headers, null, data);
-        const result = await response.json();
-        const code = result.Response.code;
+        const code = response.Response.code;
         if (code === 10001) {
-            console.log(`奖池抽奖：${result.Response.data.drawInfoList[0].drawInfoList}`);
-            goodsMsg += `奖池抽奖：${result.Response.data.drawInfoList[0].drawInfoList}\n`;
+            console.log(`奖池抽奖：${response.Response.data.drawInfoList[0].drawInfoList}`);
+            goodsMsg += `奖池抽奖：${response.Response.data.drawInfoList[0].drawInfoList}\n`;
         } else {
-            console.log(`奖池抽奖：${result.Response.sub_msg}`);
-            goodsMsg += `奖池抽奖：${result.Response.sub_msg}\n`;
+            console.log(`奖池抽奖：${response.Response.sub_msg}`);
+            goodsMsg += `奖池抽奖：${response.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error(error);
@@ -591,15 +589,14 @@ async function cpnSign(cookie) {
 
     try {
         const response = await fetchRequest('POST', url, headers, null, data)
-        const result = await response.json();
-        const code = result.Response.code;
+        const code = response.Response.code;
 
         if (code === 10001) {
             console.log('每日签到：完成');
             goodsMsg += `每日签到：完成\n`;
         } else {
-            console.log(`每日签到：${result.Response.sub_msg}`);
-            goodsMsg += `每日签到：${result.Response.sub_msg}\n`;
+            console.log(`每日签到：${response.Response.sub_msg}`);
+            goodsMsg += `每日签到：${response.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error(error);
@@ -623,14 +620,14 @@ async function Sign(cookie) {
     };
 
     try {
-        const result = await fetchRequest('GET', url, headers, params); // 直接等待 fetchRequest 的结果
-        const code = result.Response.code; // 使用解析后的数据
+        const response = await fetchRequest('GET', url, headers, params); // 直接等待 fetchRequest 的结果
+        const code = response.Response.code; // 使用解析后的数据
         if (code === 10001) {
             console.log('每日签到：完成');
             goodsMsg += `每日签到：完成\n`;
         } else {
-            console.log(`每日签到：${result.Response.sub_msg}`);
-            goodsMsg += `每日签到：${result.Response.sub_msg}\n`;
+            console.log(`每日签到：${response.Response.sub_msg}`);
+            goodsMsg += `每日签到：${response.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error("签到请求出错：", error);
@@ -717,7 +714,7 @@ async function startGame(cookie) {
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
     };
-    const response = await fetchRequest('POST', url, headers);
+    const response = await fetchRequest('GET', url, headers,null,null);
     if (response && response.Response.code === 10001) {
         console.log('游戏开始成功');
         goodsMsg += `游戏开始成功\n`;
