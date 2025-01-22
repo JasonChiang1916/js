@@ -38,82 +38,156 @@ function fetchRequest(method, url, headers, params, body) {
     });
 }
 
-async function pa(input) {
+async function getTimestamp(t) {
     let T;
-    const R = new Array(128).fill(undefined);
-    R.push(undefined, null, true, false);
+    const R = new Array(128).fill(void 0);
+    function o(e) {
+        return R[e]
+    }
+    R.push(void 0, null, !0, !1);
     let W = R.length;
-
-    function o(index) {
-        return R[index];
-    }
-
-    function f(value) {
+    function f(e) {
         W === R.length && R.push(R.length + 1);
-        const idx = W;
-        W = R[idx];
-        R[idx] = value;
-        return idx;
+        const t = W;
+        return W = R[t],
+            R[t] = e,
+            t
+    }
+    function ct(e) {
+        const t = o(e);
+        return function (a) {
+            a < 132 || (R[a] = W,
+                W = a)
+        }(e),
+            t
     }
 
-    function ct(index) {
-        const value = o(index);
-        R[index] = W;
-        W = index;
-        return value;
-    }
-
-    const gt = new TextDecoder("utf-8", { ignoreBOM: true, fatal: true });
-
+    const gt = typeof TextDecoder < "u" ? new TextDecoder("utf-8", {
+        ignoreBOM: !0,
+        fatal: !0
+    }) : {
+        decode: () => {
+            throw Error("TextDecoder not available")
+        }
+    };
+    typeof TextDecoder < "u" && gt.decode();
+    let L = null;
     function _() {
-        return new Uint8Array(T.memory.buffer);
+        return L !== null && L.byteLength !== 0 || (L = new Uint8Array(T.memory.buffer)),
+            L
+    }
+    function $(e, t) {
+        return e >>>= 0,
+            gt.decode(_().subarray(e, e + t))
     }
 
-    function $(ptr, len) {
-        return gt.decode(_().subarray(ptr, ptr + len));
+    let K = null, q = null;
+    function C() {
+        return q !== null && q.byteLength !== 0 || (q = new Int32Array(T.memory.buffer)),
+            q
+    }
+    let O = 0;
+
+    const ee = typeof TextEncoder < "u" ? new TextEncoder("utf-8") : {
+        encode: () => {
+            throw Error("TextEncoder not available")
+        }
+    }
+    const Gt = typeof ee.encodeInto == "function" ? function (e, t) {
+        return ee.encodeInto(e, t)
+    } : function (e, t) {
+        const a = ee.encode(e);
+        return t.set(a),
+        {
+            read: e.length,
+            written: a.length
+        }
+    };
+
+    function oe(e, t, a) {
+        if (a === void 0) {
+            const n = ee.encode(e)
+                , g = t(n.length, 1) >>> 0;
+            return _().subarray(g, g + n.length).set(n),
+                O = n.length,
+                g
+        }
+        let i = e.length
+            , s = t(i, 1) >>> 0;
+        const A = _();
+        let r = 0;
+        for (; r < i; r++) {
+            const n = e.charCodeAt(r);
+            if (n > 127)
+                break;
+            A[s + r] = n
+        }
+        if (r !== i) {
+            r !== 0 && (e = e.slice(r)),
+                s = a(s, i, i = r + 3 * e.length, 1) >>> 0;
+            const n = _().subarray(s + r, s + i);
+            r += Gt(e, n).written
+        }
+        return O = r,
+            s
     }
 
-    function oe(string, malloc, realloc) {
-        const encoded = new TextEncoder("utf-8").encode(string);
-        const ptr = malloc(encoded.length, 1) >>> 0;
-        _().subarray(ptr, ptr + encoded.length).set(encoded);
-        return ptr;
+    async function lt(e) {
+        if (T !== void 0)
+            return T;
+        e === void 0 && (e = new URL("https://static-cpn.hotkidclub.com/cpn/2025year/assets/campaign_bg-9d108286.wasm", self.location));
+        const t = Et();
+        (typeof e == "string" || typeof Request == "function" && e instanceof Request || typeof URL == "function" && e instanceof URL) && (e = fetch(e));
+        const { instance: a, module: i } = await async function (s, A) {
+            if (typeof Response == "function" && s instanceof Response) {
+                if (typeof WebAssembly.instantiateStreaming == "function")
+                    try {
+                        return await WebAssembly.instantiateStreaming(s, A)
+                    } catch (n) {
+                        if (s.headers.get("Content-Type") == "application/wasm")
+                            throw n;
+                        console.warn("`WebAssembly.instantiateStreaming` failed because your server does not serve wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n", n)
+                    }
+                const r = await s.arrayBuffer();
+                return await WebAssembly.instantiate(r, A)
+            }
+            {
+                const r = await WebAssembly.instantiate(s, A);
+                return r instanceof WebAssembly.Instance ? {
+                    instance: r,
+                    module: s
+                } : r
+            }
+        }(await e, t);
+        return function (s, A) {
+            return T = s.exports,
+                lt.__wbindgen_wasm_module = A,
+                J = null,
+                K = null,
+                q = null,
+                L = null,
+                T
+        }(a, i)
     }
 
-    async function lt(wasmModuleUrl) {
-        if (T !== undefined) return T;
-
-        const imports = { wbg: {} };
-        const response = await fetchRequest('GET', wasmModuleUrl, {}, null, null);
-        const wasmBuffer = await response.arrayBuffer();
-
-        const { instance } = await WebAssembly.instantiate(wasmBuffer, imports);
-        T = instance.exports;
-        return T;
-    }
-
-    const wasmUrl = "https://static-cpn.hotkidclub.com/cpn/2025year/assets/campaign_bg-9d108286.wasm";
-    await lt(wasmUrl);
-
-    const result = T.get_timestamp(f(input));
-    return $(result, 128); // Adjust buffer size based on expected response length
+    const Mt = await fetchRequest("GET", "https://static-cpn.hotkidclub.com/cpn/2025year/assets/campaign_bg-9d108286.wasm", {}, {});
+    await lt(Mt);
+    const s = getTimestamp(t);
+    return s;
 }
 
 // 获取用户数据
 function GetCookie() {
     try {
         const headers = $request.headers;
-
         // 提取请求头中的 apitoken
         const token = headers['cookie'];
-
         // 持久化存储 token
         if (token) {
             $prefs.setValueForKey(token, 'wangwang');
             console.log(`wangwang 已保存: ${token}`);
             $notify("🍀 获取wangwang成功", "", token);
         }
-
     } catch (e) {
         $notify("⛔️ 获取Cookie失败", "", `错误: ${e.message}`);
     } finally {
@@ -153,7 +227,7 @@ async function grabGameGetFragment(grade, token, taskName) {
     } else if (grade === 2) {
         json_data["score"] = 50;
     }
-    const timestamp = await pa(json_data);
+    const timestamp = await getTimestamp(json_data);
     headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
     try {
         const response = await fetchRequest("https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", {
@@ -415,7 +489,7 @@ async function getFragments(cookie, taskName, type) {
         "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "Cookie": cookie
     };
-    const timestamp = await pa(json_data);
+    const timestamp = await getTimestamp(json_data);
     headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
     const data = { "getWay": type, "adid": "2025festival-campaign_self-click-link-1j8" };
     const response = await fetchRequest('POST', url, headers, null, data);
