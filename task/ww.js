@@ -38,7 +38,6 @@ function fetchRequest(method, url, headers, params, body) {
     });
 }
 
-
 let pa = async (t) => {
 
     let T;
@@ -438,7 +437,6 @@ let pa = async (t) => {
 
 }
 
-
 // 获取用户数据
 function GetCookie() {
     try {
@@ -792,13 +790,14 @@ async function run(cookie, jc) {
         if (!apitokens) {
             $notify("错误", "", "没有配置 wangwang 环境变量");
             $done();
+        } else {
+            const apitokenList = apitokens.split("#");
+            for (const apitoken of apitokenList) {
+                await run(apitoken, 2);
+            }
+            $notify("旺旺执行结果", ``, `详情：\n${goodsMsg}`);
+            $done();
         }
-        const apitokenList = apitokens.split("#");
-        for (const apitoken of apitokenList) {
-            await run(apitoken,2);
-        }
-        $notify("旺旺执行结果", ``, `详情：\n${goodsMsg}`);
-        $done();
     }
 })()
     .catch((e) => $.messages.push(e.message || e) && $.logErr(e))
