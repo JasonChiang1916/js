@@ -379,61 +379,61 @@ async function Sign(cookie) {
 async function run(cookie, jc) {
     // await cpnSign(cookie);
     await Sign(cookie);
-    const url = 'https://www.hotkidclub.com/api/cpn/year2025/taskList.ctrl';
-    const headers = {
-        "Host": "www.hotkidclub.com",
-        "Connection": "keep-alive",
-        "Content-Length": "18",
-        "sec-ch-ua-platform": "Android",
-        "Timestamp": String(Date.now()),
-        "User-Agent": "Mozilla/5.0 (Linux; Android 10; MI 8 Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.103 Mobile Safari/537.36 XWEB/1300289 MMWEBSDK/20241103 MMWEBID/6533 MicroMessenger/8.0.55.2780(0x2800373D) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64 miniProgram/wxe2c4192bf307ccff",
-        "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
-        "Content-Type": "application/json",
-        "sec-ch-ua-mobile": "?1",
-        "Accept": "*/*",
-        "Origin": "https://www.hotkidclub.com",
-        "X-Requested-With": "com.tencent.mm",
-        "Sec-Fetch-Site": "same-origin",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Dest": "empty",
-        "Referer": "https://www.hotkidclub.com/",
-        "Accept-Encoding": "gzip, deflate, br, zstd",
-        "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-        "Cookie": cookie
-    };
-    const data = { platformType: 1 };
-    const response = await fetchRequest('POST', url, headers, null, data);
-    if (response && response.Response.code === 10001) {
-        console.log('开始游戏集卡任务');
-        goodsMsg += `开始游戏集卡任务\n`;
-        const taskList = response.Response.data.taskList || [];
-        for (const task of taskList) {
-            const { taskName, type, status } = task;
-            if (status === 2) {
-                console.log(`${taskName}：任务已完成，领卡已完成`);
-                goodsMsg += `${taskName}：任务已完成，领卡已完成\n`;
-            } else if (status === 1) {
-                console.log(`${taskName}：任务已完成，领卡未完成,去领卡`);
-                goodsMsg += `${taskName}：任务已完成，领卡未完成,去领卡\n`;
-                await getFragments(cookie, taskName, type);
-            } else {
-                console.log(`${taskName}：任务未完成，领卡未完成，去做任务及领卡`);
-                goodsMsg += `${taskName}：任务未完成，领卡未完成，去做任务及领卡\n`;
-                if (taskName === "每日游戏") {
-                    for (let i = 1; i <= 3; i++) {
-                        console.log(`第${i}轮游戏中,等待150秒`);
-                        goodsMsg += `第${i}轮游戏中,等待150秒\n`;
-                        const grade = await startGame(cookie);
-                        await new Promise(resolve => setTimeout(resolve, 150 * 1000));
-                        await grabGameGetFragment(grade, cookie, taskName);
-                    }
-                } else {
-                    await dotask(cookie, taskName, type);
-                    await getFragments(cookie, taskName, type);
-                }
-            }
-        }
-        await draw(cookie, jc);
+    // const url = 'https://www.hotkidclub.com/api/cpn/year2025/taskList.ctrl';
+    // const headers = {
+    //     "Host": "www.hotkidclub.com",
+    //     "Connection": "keep-alive",
+    //     "Content-Length": "18",
+    //     "sec-ch-ua-platform": "Android",
+    //     "Timestamp": String(Date.now()),
+    //     "User-Agent": "Mozilla/5.0 (Linux; Android 10; MI 8 Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.103 Mobile Safari/537.36 XWEB/1300289 MMWEBSDK/20241103 MMWEBID/6533 MicroMessenger/8.0.55.2780(0x2800373D) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64 miniProgram/wxe2c4192bf307ccff",
+    //     "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
+    //     "Content-Type": "application/json",
+    //     "sec-ch-ua-mobile": "?1",
+    //     "Accept": "*/*",
+    //     "Origin": "https://www.hotkidclub.com",
+    //     "X-Requested-With": "com.tencent.mm",
+    //     "Sec-Fetch-Site": "same-origin",
+    //     "Sec-Fetch-Mode": "cors",
+    //     "Sec-Fetch-Dest": "empty",
+    //     "Referer": "https://www.hotkidclub.com/",
+    //     "Accept-Encoding": "gzip, deflate, br, zstd",
+    //     "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+    //     "Cookie": cookie
+    // };
+    // const data = { platformType: 1 };
+    // const response = await fetchRequest('POST', url, headers, null, data);
+    // if (response && response.Response.code === 10001) {
+    //     console.log('开始游戏集卡任务');
+    //     goodsMsg += `开始游戏集卡任务\n`;
+    //     const taskList = response.Response.data.taskList || [];
+    //     for (const task of taskList) {
+    //         const { taskName, type, status } = task;
+    //         if (status === 2) {
+    //             console.log(`${taskName}：任务已完成，领卡已完成`);
+    //             goodsMsg += `${taskName}：任务已完成，领卡已完成\n`;
+    //         } else if (status === 1) {
+    //             console.log(`${taskName}：任务已完成，领卡未完成,去领卡`);
+    //             goodsMsg += `${taskName}：任务已完成，领卡未完成,去领卡\n`;
+    //             await getFragments(cookie, taskName, type);
+    //         } else {
+    //             console.log(`${taskName}：任务未完成，领卡未完成，去做任务及领卡`);
+    //             goodsMsg += `${taskName}：任务未完成，领卡未完成，去做任务及领卡\n`;
+    //             if (taskName === "每日游戏") {
+    //                 for (let i = 1; i <= 3; i++) {
+    //                     console.log(`第${i}轮游戏中,等待150秒`);
+    //                     goodsMsg += `第${i}轮游戏中,等待150秒\n`;
+    //                     const grade = await startGame(cookie);
+    //                     await new Promise(resolve => setTimeout(resolve, 150 * 1000));
+    //                     await grabGameGetFragment(grade, cookie, taskName);
+    //                 }
+    //             } else {
+    //                 await dotask(cookie, taskName, type);
+    //                 await getFragments(cookie, taskName, type);
+    //             }
+    //         }
+    //     }
+    //     await draw(cookie, jc);
     } else {
         console.log('ck异常');
         goodsMsg += `ck异常\n`;
