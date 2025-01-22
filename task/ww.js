@@ -771,9 +771,9 @@ async function run(cookie, jc) {
                 goodsMsg += `${taskName}：任务未完成，领卡未完成，去做任务及领卡\n`;
                 if (taskName === "每日游戏") {
                     for (let i = 1; i <= 3; i++) {
+                        const grade = await startGame(cookie);
                         console.log(`第${i}轮游戏中,等待150秒`);
                         goodsMsg += `第${i}轮游戏中,等待150秒\n`;
-                        const grade = await startGame(cookie);
                         await new Promise(resolve => setTimeout(resolve, 150 * 1000));
                         await grabGameGetFragment(grade, cookie, taskName);
                     }
