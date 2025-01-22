@@ -17,7 +17,7 @@ hostname = www.hotkidclub.com
 ******************************************/
 let goodsMsg = "";
 
-function fetchRequest(method, url, headers, params = null, body = null, timeout = 5000) {
+function fetchRequest(method, url, headers, params = null, body = null) {
     let query = params ? '?' + new URLSearchParams(params).toString() : '';
     const options = {
         url: url + query,
@@ -26,7 +26,7 @@ function fetchRequest(method, url, headers, params = null, body = null, timeout 
         body: body ? JSON.stringify(body) : undefined, // 如果 body 为空则忽略
     };
 
-    const fetchPromise = $task.fetch(options).then(response => {
+    $task.fetch(options).then(response => {
         try {
             return JSON.parse(response.body);
         } catch (error) {
@@ -37,18 +37,11 @@ function fetchRequest(method, url, headers, params = null, body = null, timeout 
         console.log("请求错误：", reason.error);
         return null;
     });
-
-    const timeoutPromise = new Promise((resolve) => {
-        setTimeout(() => {
-            console.log("请求超时");
-            resolve(null); // 超时后返回 null
-        }, timeout);
-    });
-
-    // 使用 Promise.race 处理超时
-    return Promise.race([fetchPromise, timeoutPromise]);
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
 let pa = async (t) => {
@@ -774,7 +767,7 @@ async function run(cookie, jc) {
                         const grade = await startGame(cookie);
                         console.log(`第${i}轮游戏中,等待150秒`);
                         goodsMsg += `第${i}轮游戏中,等待150秒\n`;
-                        await new Promise(resolve => setTimeout(resolve, 150 * 1000));
+                        await sleep(150 * 1000);
                         await grabGameGetFragment(grade, cookie, taskName);
                     }
                 } else {
