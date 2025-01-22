@@ -170,7 +170,7 @@ async function getTimestamp(t) {
         }(a, i)
     }
 
-    const Mt = await fetchRequest("GET", "https://static-cpn.hotkidclub.com/cpn/2025year/assets/campaign_bg-9d108286.wasm", {}, {});
+    const Mt = await fetchRequest("GET", "https://static-cpn.hotkidclub.com/cpn/2025year/assets/campaign_bg-9d108286.wasm", {}, {}, {});
     await lt(Mt);
     const s = getTimestamp(t);
     return s;
@@ -230,11 +230,8 @@ async function grabGameGetFragment(grade, token, taskName) {
     const timestamp = await getTimestamp(json_data);
     headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
     try {
-        const response = await fetchRequest("https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(json_data)
-        });
+        const response = await fetchRequest("POST", "https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", headers,{},JSON.stringify(json_data)
+        );
         const result = await response.json();
         const code = result.Response.code;
         if (code === 10001) {
@@ -278,11 +275,7 @@ async function draw(cookie, jc) {
         { "drawType": 2, "acType": 1, "platform": "WEB", "channel": "WEIXINMP", "adid": "2025festival-hotkidclub-click-2025_festival-1j8" };
 
     try {
-        const response = await fetchRequest(url, {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(data)
-        });
+        const response = await fetchRequest('POST', url, headers, {}, JSON.stringify(data));
         const result = await response.json();
         const code = result.Response.code;
         if (code === 10001) {
@@ -322,11 +315,7 @@ async function cpnSign(cookie) {
     };
 
     try {
-        const response = await fetchRequest(url, {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(payload)
-        });
+        const response = await fetchRequest('POST', url, headers, {}, JSON.stringify(data))
         const result = await response.json();
         const code = result.Response.code;
 
@@ -341,7 +330,6 @@ async function cpnSign(cookie) {
         console.error(error);
     }
 }
-
 
 async function Sign(cookie) {
     const url = 'https://www.hotkidclub.com/api/campaign/attendance/draw/luckyNew.ctrl';
@@ -376,70 +364,6 @@ async function Sign(cookie) {
     }
 }
 
-async function run(cookie, jc) {
-    // await cpnSign(cookie);
-    await Sign(cookie);
-    // const url = 'https://www.hotkidclub.com/api/cpn/year2025/taskList.ctrl';
-    // const headers = {
-    //     "Host": "www.hotkidclub.com",
-    //     "Connection": "keep-alive",
-    //     "Content-Length": "18",
-    //     "sec-ch-ua-platform": "Android",
-    //     "Timestamp": String(Date.now()),
-    //     "User-Agent": "Mozilla/5.0 (Linux; Android 10; MI 8 Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.103 Mobile Safari/537.36 XWEB/1300289 MMWEBSDK/20241103 MMWEBID/6533 MicroMessenger/8.0.55.2780(0x2800373D) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64 miniProgram/wxe2c4192bf307ccff",
-    //     "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
-    //     "Content-Type": "application/json",
-    //     "sec-ch-ua-mobile": "?1",
-    //     "Accept": "*/*",
-    //     "Origin": "https://www.hotkidclub.com",
-    //     "X-Requested-With": "com.tencent.mm",
-    //     "Sec-Fetch-Site": "same-origin",
-    //     "Sec-Fetch-Mode": "cors",
-    //     "Sec-Fetch-Dest": "empty",
-    //     "Referer": "https://www.hotkidclub.com/",
-    //     "Accept-Encoding": "gzip, deflate, br, zstd",
-    //     "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-    //     "Cookie": cookie
-    // };
-    // const data = { platformType: 1 };
-    // const response = await fetchRequest('POST', url, headers, null, data);
-    // if (response && response.Response.code === 10001) {
-    //     console.log('开始游戏集卡任务');
-    //     goodsMsg += `开始游戏集卡任务\n`;
-    //     const taskList = response.Response.data.taskList || [];
-    //     for (const task of taskList) {
-    //         const { taskName, type, status } = task;
-    //         if (status === 2) {
-    //             console.log(`${taskName}：任务已完成，领卡已完成`);
-    //             goodsMsg += `${taskName}：任务已完成，领卡已完成\n`;
-    //         } else if (status === 1) {
-    //             console.log(`${taskName}：任务已完成，领卡未完成,去领卡`);
-    //             goodsMsg += `${taskName}：任务已完成，领卡未完成,去领卡\n`;
-    //             await getFragments(cookie, taskName, type);
-    //         } else {
-    //             console.log(`${taskName}：任务未完成，领卡未完成，去做任务及领卡`);
-    //             goodsMsg += `${taskName}：任务未完成，领卡未完成，去做任务及领卡\n`;
-    //             if (taskName === "每日游戏") {
-    //                 for (let i = 1; i <= 3; i++) {
-    //                     console.log(`第${i}轮游戏中,等待150秒`);
-    //                     goodsMsg += `第${i}轮游戏中,等待150秒\n`;
-    //                     const grade = await startGame(cookie);
-    //                     await new Promise(resolve => setTimeout(resolve, 150 * 1000));
-    //                     await grabGameGetFragment(grade, cookie, taskName);
-    //                 }
-    //             } else {
-    //                 await dotask(cookie, taskName, type);
-    //                 await getFragments(cookie, taskName, type);
-    //             }
-    //         }
-    //     }
-    //     await draw(cookie, jc);
-    // } else {
-    //     console.log('ck异常');
-    //     goodsMsg += `ck异常\n`;
-    // }
-}
-
 async function dotask(cookie, taskName, type) {
     const url = 'https://www.hotkidclub.com/api/cpn/year2025/completeBrowseTask.ctrl';
     const headers = {
@@ -456,7 +380,7 @@ async function dotask(cookie, taskName, type) {
         "Cookie": cookie
     };
     const data = { type };
-    const response = await fetchRequest('POST', url, headers, null, data);
+    const response = await fetchRequest('POST', url, headers, {}, JSON.stringify(data));
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：完成`);
         goodsMsg += `${taskName}：完成\n`;
@@ -492,7 +416,7 @@ async function getFragments(cookie, taskName, type) {
     const timestamp = await getTimestamp(json_data);
     headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
     const data = { "getWay": type, "adid": "2025festival-campaign_self-click-link-1j8" };
-    const response = await fetchRequest('POST', url, headers, null, data);
+    const response = await fetchRequest('POST', url, headers, {}, JSON.stringify(data));
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：成功获取碎片`);
         goodsMsg += `${taskName}：成功获取碎片\n`;
@@ -519,7 +443,7 @@ async function startGame(cookie) {
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
     };
-    const response = await fetchRequest('POST', url, headers, null, {});
+    const response = await fetchRequest('POST', url, headers, {}, {});
     if (response && response.Response.code === 10001) {
         console.log('游戏开始成功');
         goodsMsg += `游戏开始成功\n`;
@@ -531,6 +455,69 @@ async function startGame(cookie) {
     }
 }
 
+async function run(cookie, jc) {
+    // await cpnSign(cookie);
+    await Sign(cookie);
+    const url = 'https://www.hotkidclub.com/api/cpn/year2025/taskList.ctrl';
+    const headers = {
+        "Host": "www.hotkidclub.com",
+        "Connection": "keep-alive",
+        "Content-Length": "18",
+        "sec-ch-ua-platform": "Android",
+        "Timestamp": String(Date.now()),
+        "User-Agent": "Mozilla/5.0 (Linux; Android 10; MI 8 Build/QKQ1.190828.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.103 Mobile Safari/537.36 XWEB/1300289 MMWEBSDK/20241103 MMWEBID/6533 MicroMessenger/8.0.55.2780(0x2800373D) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64 miniProgram/wxe2c4192bf307ccff",
+        "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
+        "Content-Type": "application/json",
+        "sec-ch-ua-mobile": "?1",
+        "Accept": "*/*",
+        "Origin": "https://www.hotkidclub.com",
+        "X-Requested-With": "com.tencent.mm",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.hotkidclub.com/",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Cookie": cookie
+    };
+    const data = { platformType: 1 };
+    const response = await fetchRequest('POST', url, headers, {}, JSON.stringify(data));
+    if (response && response.Response.code === 10001) {
+        console.log('开始游戏集卡任务');
+        goodsMsg += `开始游戏集卡任务\n`;
+        const taskList = response.Response.data.taskList || [];
+        for (const task of taskList) {
+            const { taskName, type, status } = task;
+            if (status === 2) {
+                console.log(`${taskName}：任务已完成，领卡已完成`);
+                goodsMsg += `${taskName}：任务已完成，领卡已完成\n`;
+            } else if (status === 1) {
+                console.log(`${taskName}：任务已完成，领卡未完成,去领卡`);
+                goodsMsg += `${taskName}：任务已完成，领卡未完成,去领卡\n`;
+                await getFragments(cookie, taskName, type);
+            } else {
+                console.log(`${taskName}：任务未完成，领卡未完成，去做任务及领卡`);
+                goodsMsg += `${taskName}：任务未完成，领卡未完成，去做任务及领卡\n`;
+                if (taskName === "每日游戏") {
+                    for (let i = 1; i <= 3; i++) {
+                        console.log(`第${i}轮游戏中,等待150秒`);
+                        goodsMsg += `第${i}轮游戏中,等待150秒\n`;
+                        const grade = await startGame(cookie);
+                        await new Promise(resolve => setTimeout(resolve, 150 * 1000));
+                        await grabGameGetFragment(grade, cookie, taskName);
+                    }
+                } else {
+                    await dotask(cookie, taskName, type);
+                    await getFragments(cookie, taskName, type);
+                }
+            }
+        }
+        await draw(cookie, jc);
+    } else {
+        console.log('ck异常');
+        goodsMsg += `ck异常\n`;
+    }
+}
 
 // 脚本执行入口
 !(async () => {
