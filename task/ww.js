@@ -15,7 +15,7 @@ hostname = www.hotkidclub.com
 23 10 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/ww.js, tag=旺旺, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true
 
 ******************************************/
-
+let goodsMsg = "";
 
 function fetchRequest(method, url, headers, params, body) {
     let query = params ? '?' + new URLSearchParams(params).toString() : '';
@@ -165,8 +165,10 @@ async function grabGameGetFragment(grade, token, taskName) {
         const code = result.Response.code;
         if (code === 10001) {
             console.log(`${taskName}：完成`);
+            goodsMsg += `${taskName}：完成\n`;
         } else {
             console.log(`${taskName}：${result.Response.sub_msg}`);
+            goodsMsg += `${taskName}：${result.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error(error);
@@ -209,11 +211,12 @@ async function draw(cookie, jc) {
         });
         const result = await response.json();
         const code = result.Response.code;
-
         if (code === 10001) {
             console.log(`奖池抽奖：${result.Response.data.drawInfoList[0].drawInfoList}`);
+            goodsMsg += `奖池抽奖：${result.Response.data.drawInfoList[0].drawInfoList}\n`;
         } else {
             console.log(`奖池抽奖：${result.Response.sub_msg}`);
+            goodsMsg += `奖池抽奖：${result.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error(error);
@@ -255,8 +258,10 @@ async function cpnSign(cookie) {
 
         if (code === 10001) {
             console.log('每日签到：完成');
+            goodsMsg += `每日签到：完成\n`;
         } else {
             console.log(`每日签到：${result.Response.sub_msg}`);
+            goodsMsg += `每日签到：${result.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error(error);
@@ -287,8 +292,10 @@ async function Sign(cookie) {
         const code = result.Response.code;
         if (code === 10001) {
             console.log('每日签到：完成');
+            goodsMsg += `每日签到：每日签到：完成\n`;
         } else {
             console.log(`每日签到：${result.Response.sub_msg}`);
+            goodsMsg += `每日签到：${result.Response.sub_msg}\n`;
         }
     } catch (error) {
         console.error(error);
@@ -324,19 +331,24 @@ async function run(cookie, jc) {
     const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
         console.log('开始游戏集卡任务');
+        goodsMsg += `开始游戏集卡任务\n`;
         const taskList = response.Response.data.taskList || [];
         for (const task of taskList) {
             const { taskName, type, status } = task;
             if (status === 2) {
                 console.log(`${taskName}：任务已完成，领卡已完成`);
+                goodsMsg += `${taskName}：任务已完成，领卡已完成\n`;
             } else if (status === 1) {
                 console.log(`${taskName}：任务已完成，领卡未完成,去领卡`);
+                goodsMsg += `${taskName}：任务已完成，领卡未完成,去领卡\n`;
                 await getFragments(cookie, taskName, type);
             } else {
                 console.log(`${taskName}：任务未完成，领卡未完成，去做任务及领卡`);
+                goodsMsg += `${taskName}：任务未完成，领卡未完成，去做任务及领卡\n`;
                 if (taskName === "每日游戏") {
                     for (let i = 1; i <= 3; i++) {
                         console.log(`第${i}轮游戏中,等待150秒`);
+                        goodsMsg += `第${i}轮游戏中,等待150秒\n`;
                         const grade = await startGame(cookie);
                         await new Promise(resolve => setTimeout(resolve, 150 * 1000));
                         await grabGameGetFragment(grade, cookie, taskName);
@@ -347,9 +359,10 @@ async function run(cookie, jc) {
                 }
             }
         }
-        await draw(cookie,jc);
+        await draw(cookie, jc);
     } else {
         console.log('ck异常');
+        goodsMsg += `ck异常\n`;
     }
 }
 
@@ -372,8 +385,10 @@ async function dotask(cookie, taskName, type) {
     const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：完成`);
+        goodsMsg += `${taskName}：完成\n`;
     } else {
         console.log(`${taskName}：${response.Response.sub_msg}`);
+        goodsMsg += `${taskName}：${response.Response.sub_msg}\n`;
     }
 }
 
@@ -406,8 +421,10 @@ async function getFragments(cookie, taskName, type) {
     const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：成功获取碎片`);
+        goodsMsg += `${taskName}：成功获取碎片\n`;
     } else {
         console.log(`${taskName}：获取碎片失败，原因：${response.Response.sub_msg}`);
+        goodsMsg += `${taskName}：获取碎片失败，原因：${response.Response.sub_msg}\n`;
     }
 }
 
@@ -431,9 +448,11 @@ async function startGame(cookie) {
     const response = await fetchRequest('POST', url, headers, null, {});
     if (response && response.Response.code === 10001) {
         console.log('游戏开始成功');
+        goodsMsg += `游戏开始成功\n`;
         return response.Response.data.grade;
     } else {
         console.log('游戏开始失败');
+        goodsMsg += `游戏开始失败\n`;
         return null;
     }
 }
@@ -453,6 +472,7 @@ async function startGame(cookie) {
         for (const apitoken of apitokenList) {
             await run(apitoken,2);
         }
+        $notify("旺旺执行结果", ``, `详情：\n${goodsMsg}`);
         $done();
     }
 })()
