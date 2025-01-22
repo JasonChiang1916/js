@@ -17,15 +17,16 @@ hostname = www.hotkidclub.com
 ******************************************/
 let goodsMsg = "";
 
-function fetchRequest(method, url, headers, params, body) {
+function fetchRequest(method, url, headers, params = null, body = null, timeout = 5000) {
     let query = params ? '?' + new URLSearchParams(params).toString() : '';
     const options = {
         url: url + query,
         method: method,
         headers: headers,
-        body: body ? JSON.stringify(body) : undefined
+        body: body ? JSON.stringify(body) : undefined, // 如果 body 为空则忽略
     };
-    return $task.fetch(options).then(response => {
+
+    const fetchPromise = $task.fetch(options).then(response => {
         try {
             return JSON.parse(response.body);
         } catch (error) {
@@ -36,7 +37,19 @@ function fetchRequest(method, url, headers, params, body) {
         console.log("请求错误：", reason.error);
         return null;
     });
+
+    const timeoutPromise = new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("请求超时");
+            resolve(null); // 超时后返回 null
+        }, timeout);
+    });
+
+    // 使用 Promise.race 处理超时
+    return Promise.race([fetchPromise, timeoutPromise]);
 }
+
+
 
 let pa = async (t) => {
 
@@ -493,7 +506,7 @@ async function grabGameGetFragment(grade, token, taskName) {
     });
 
     try {
-        const response = await fetchRequest("POST", "https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", headers, {}, json_data);
+        const response = await fetchRequest("POST", "https://www.hotkidclub.com/api/cpn/year2025/grabGameGetFragment.ctrl", headers, null, json_data);
         const result = await response.json();
         const code = result.Response.code;
         if (code === 10001) {
@@ -537,7 +550,7 @@ async function draw(cookie, jc) {
         { "drawType": 2, "acType": 1, "platform": "WEB", "channel": "WEIXINMP", "adid": "2025festival-hotkidclub-click-2025_festival-1j8" };
 
     try {
-        const response = await fetchRequest('POST', url, headers, {}, data);
+        const response = await fetchRequest('POST', url, headers, null, data);
         const result = await response.json();
         const code = result.Response.code;
         if (code === 10001) {
@@ -577,7 +590,7 @@ async function cpnSign(cookie) {
     };
 
     try {
-        const response = await fetchRequest('POST', url, headers, {}, data)
+        const response = await fetchRequest('POST', url, headers, null, data)
         const result = await response.json();
         const code = result.Response.code;
 
@@ -641,7 +654,7 @@ async function dotask(cookie, taskName, type) {
         "Cookie": cookie
     };
     const data = { type };
-    const response = await fetchRequest('POST', url, headers, {}, data);
+    const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：完成`);
         goodsMsg += `${taskName}：完成\n`;
@@ -678,7 +691,7 @@ async function getFragments(cookie, taskName, type) {
         headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
     });
     const data = { "getWay": type, "adid": "2025festival-campaign_self-click-link-1j8" };
-    const response = await fetchRequest('POST', url, headers, {}, data);
+    const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：成功获取碎片`);
         goodsMsg += `${taskName}：成功获取碎片\n`;
@@ -743,7 +756,7 @@ async function run(cookie, jc) {
         "Cookie": cookie
     };
     const data = { platformType: 1 };
-    const response = await fetchRequest('POST', url, headers, {}, data);
+    const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
         console.log('开始游戏集卡任务');
         goodsMsg += `开始游戏集卡任务\n`;
