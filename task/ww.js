@@ -1,8 +1,7 @@
-
 /******************************************
  * @name 旺旺
  * @author 1916
- * @update 20250122
+ * @update 20250123
  * @version 1.0.0
  * @description 先人工签到一次获取token
 --------------- Quantumult X 配置---------------
@@ -679,10 +678,11 @@ async function getFragments(cookie, taskName, type) {
         "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
         "Cookie": cookie
     };
-    pa(json_data).then((timestamp) => {
-        headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
-    });
     const data = { "getWay": type, "adid": "2025festival-campaign_self-click-link-1j8" };
+    pa(data).then((timestamp) => {
+        headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
+        console.log(timestamp);
+    });
     const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
         console.log(`${taskName}：成功获取碎片`);
