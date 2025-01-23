@@ -1,3 +1,4 @@
+
 /******************************************
  * @name 旺旺
  * @author 1916
@@ -497,6 +498,7 @@ async function grabGameGetFragment(grade, token, taskName) {
     }
     pa(json_data).then((timestamp) => {
         headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
+        console.log(timestamp);
     });
 
     try {
