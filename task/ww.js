@@ -495,9 +495,10 @@ async function grabGameGetFragment(grade, token, taskName) {
     } else if (grade === 2) {
         json_data["score"] = 50;
     }
-    pa(json_data).then((timestamp) => {
+    await pa(json_data).then((timestamp) => {
         headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
         console.log(timestamp);
+        goodsMsg += `${timestamp}\n`;
     });
 
     try {
@@ -679,9 +680,10 @@ async function getFragments(cookie, taskName, type) {
         "Cookie": cookie
     };
     const data = { "getWay": type, "adid": "2025festival-campaign_self-click-link-1j8" };
-    pa(data).then((timestamp) => {
+    await pa(data).then((timestamp) => {
         headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
         console.log(timestamp);
+        goodsMsg += `${timestamp}\n`;
     });
     const response = await fetchRequest('POST', url, headers, null, data);
     if (response && response.Response.code === 10001) {
