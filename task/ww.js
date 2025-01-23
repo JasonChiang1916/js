@@ -495,7 +495,7 @@ async function grabGameGetFragment(grade, token, taskName) {
     } else if (grade === 2) {
         json_data["score"] = 50;
     }
-    await pa(json_data).then((timestamp) => {
+    pa(json_data).then((timestamp) => {
         headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
         console.log(timestamp);
         goodsMsg += `${timestamp}\n`;
@@ -680,7 +680,7 @@ async function getFragments(cookie, taskName, type) {
         "Cookie": cookie
     };
     const data = { "getWay": type, "adid": "2025festival-campaign_self-click-link-1j8" };
-    await pa(data).then((timestamp) => {
+    pa(data).then((timestamp) => {
         headers["Timestamp"] = timestamp.replace(/\n/g, "").replace(/\s/g, "");
         console.log(timestamp);
         goodsMsg += `${timestamp}\n`;
@@ -769,11 +769,12 @@ async function run(cookie, jc) {
                 goodsMsg += `${taskName}：任务未完成，领卡未完成，去做任务及领卡\n`;
                 if (taskName === "每日游戏") {
                     for (let i = 1; i <= 3; i++) {
-                        const grade = await startGame(cookie);
-                        console.log(`第${i}轮游戏中,等待150秒`);
-                        goodsMsg += `第${i}轮游戏中,等待150秒\n`;
-                        await sleep(150 * 1000);
-                        await grabGameGetFragment(grade, cookie, taskName);
+                        console.log(`第${i}轮游戏中,有问题先跳过本次游戏`);
+                        // const grade = await startGame(cookie);
+                        // console.log(`第${i}轮游戏中,等待150秒`);
+                        // goodsMsg += `第${i}轮游戏中,等待150秒\n`;
+                        // await sleep(150 * 1000);
+                        // await grabGameGetFragment(grade, cookie, taskName);
                     }
                 } else {
                     await dotask(cookie, taskName, type);
@@ -808,3 +809,4 @@ async function run(cookie, jc) {
     }
 })()
     .catch((e) => $.messages.push(e.message || e) && $.logErr(e))
+
