@@ -15,7 +15,7 @@
 3. 添加重写，打开需要签到的有赞小程序，进入签到页面，获取签到数据
 
 [Script]
-http-request https://h5.youzan.com/wscump/checkin/get_activity_by_yzuid_v2.json.+ script-path=https://gist.githubusercontent.com/Sliverkiss/8770ecc5fe99c8f6d99c964b33244d79/raw/youzanV3.js, timeout=300, tag=Sakura Checkbox获取token
+http-request https://h5.youzan.com/wscump/checkin/get_activity_by_yzuid_v2.json.+ script-path=https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/yz.js, timeout=300, tag=Sakura Checkbox获取token
 
 [MITM]
 hostname =h5.youzan.com
