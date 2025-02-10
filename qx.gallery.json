@@ -127,8 +127,7 @@
             "config": "5 0,18 * * * https://raw.githubusercontent.com/xzxxn777/Surge/main/Script/YiLi/YiLi.js, tag=伊利-春节, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/yiLi.png, enabled=true"
         },
         {
-            "config": "23 10 * * * https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/task/ww.js, tag=旺旺, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/nfsq.png, enabled=true",
-            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/ww.conf, tag=旺旺获取token"
-        },
+            "config": "30 1,7,12,18,22 * * * https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/pinduoduo/pdd_guoyuan.js, tag=拼多多果园, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/pdd.png, enabled=true"
+        }
     ]
 }
