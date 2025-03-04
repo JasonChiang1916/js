@@ -7,8 +7,8 @@
             "addons": "https://gist.githubusercontent.com/Sliverkiss/b564306f40741c8d549409fbe6c2aae9/raw/gddt.conf, tag=高德地图获取token"
         },
         {
-            "config": "40 8 * * * https://raw.githubusercontent.com/Crazy-Z7/Task/main/Tuhyche.js, tag=途虎养车积分签到, img-url=https://raw.githubusercontent.com/Crazy-Z7/Task/main/Image/IMG_0905.jpeg, enabled=false",
-            "addons": "https://gist.githubusercontent.com/Sliverkiss/b564306f40741c8d549409fbe6c2aae9/raw/thyc.conf, tag=途虎获取token"
+            "config": "17 7 * * * https://raw.githubusercontent.com/Sliverkiss/GoodNight/master/Script/tuhu.js, tag=途虎养车, img-url=https://raw.githubusercontent.com/FoKit/Scripts/main/images/tuhu.png, enabled=true",
+            "addons": "https://raw.githubusercontent.com/JasonChiang1916/js/refs/heads/main/conf/tuhu.conf, tag=途虎获取token"
         },
         {
             "config": "15 9 * * * https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jparking_sign.js, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Jtc.png, tag=捷停车签到, enabled=false",
