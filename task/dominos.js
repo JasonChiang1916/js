@@ -94,11 +94,11 @@ class am {
   async sharingDone(h) {
     try {
       const k = {
-        url: "https://game.dominos.com.cn/" + h + "/getGameSharing?openid="+ this.openid,
+        url: "https://game.dominos.com.cn/" + h + "/game/getGameSharing?openid="+ this.openid,
         headers: this.headers
         // body: "openid=" + this.openid + "&from=1&target=0"
       };
-      let l = await av('get',k);
+      let l = await av(k);
       l?.["statusCode"] == 0 ? console.log("账号[" + this.index + "][" + h + "] 分享成功,抽奖次数+1") : (console.log("账号[" + this.index + "][" + h + "] " + l?.["errorMessage"]), this.sharingStatus = false);
     } catch (p) {
       console.log(p);
