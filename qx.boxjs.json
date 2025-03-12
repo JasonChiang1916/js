@@ -69,6 +69,7 @@
                 "dlm_notify",
                 "dlm_date",
                 "dlm_game",
+                "dlm_token",
                 "dlm_data"
             ],
             "settings": [
@@ -92,6 +93,13 @@
                     "val": "",
                     "type": "text",
                     "desc": "活动id"
+                },
+                {
+                    "id": "dlm_token",
+                    "name": "请求头token",
+                    "val": "",
+                    "type": "text",
+                    "desc": "请求头token"
                 },
                 {
                     "id": "dlm_date",
