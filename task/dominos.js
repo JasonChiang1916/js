@@ -94,9 +94,9 @@ class am {
   async sharingDone(h) {
     try {
       const k = {
-        url: "https://game.dominos.com.cn/" + h + "/game/sharingDone",
-        headers: this.headers,
-        body: "openid=" + this.openid + "&from=1&target=0"
+        url: "https://game.dominos.com.cn/" + h + "/getGameSharing?openid="+ this.openid,
+        headers: this.headers
+        // body: "openid=" + this.openid + "&from=1&target=0"
       };
       let l = await av(k);
       l?.["statusCode"] == 0 ? console.log("账号[" + this.index + "][" + h + "] 分享成功,抽奖次数+1") : (console.log("账号[" + this.index + "][" + h + "] " + l?.["errorMessage"]), this.sharingStatus = false);
@@ -121,7 +121,7 @@ class am {
   async getGameSatuts(h) {
     try {
       const l = {
-        url: "https://game.dominos.com.cn/" + h + "/getUser?openid=" + this.openid,
+        url: "https://game.dominos.com.cn/" + h + "/getUser?openid=undefined",
         headers: this.headers
       };
       let m = (await av(l)) ?? "本期活动已经结束";
