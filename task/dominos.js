@@ -98,7 +98,7 @@ class am {
         headers: this.headers
         // body: "openid=" + this.openid + "&from=1&target=0"
       };
-      let l = await av(k);
+      let l = await av('get',k);
       l?.["statusCode"] == 0 ? console.log("账号[" + this.index + "][" + h + "] 分享成功,抽奖次数+1") : (console.log("账号[" + this.index + "][" + h + "] " + l?.["errorMessage"]), this.sharingStatus = false);
     } catch (p) {
       console.log(p);
@@ -121,7 +121,7 @@ class am {
   async getGameSatuts(h) {
     try {
       const l = {
-        url: "https://game.dominos.com.cn/" + h + "/getUser?openid=undefined",
+        url: "https://game.dominos.com.cn/" + h + "/getUser?openid="+ this.openid,
         headers: this.headers
       };
       let m = (await av(l)) ?? "本期活动已经结束";
